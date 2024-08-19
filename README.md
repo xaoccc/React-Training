@@ -1,6 +1,6 @@
 # React-Training
 React for complete beginners
-## Demo 1 steps:
+## Demo 1:
 - Create index.html
 - Create dir src
 - In dir src create app.js
@@ -33,6 +33,18 @@ add "build": "npx babel --watch src --out-dir build --presets react-app/prod"
 - run the newly added command:  
 `npm run build`  
 - Now we can write html in our app.js and babel will translate it to React code in the build dir. Then index.html will display it properly.  
+
+## Demo 2:
+- Here we use Vite. Vite installs all necessary for a React app.
+- Install Vite:  
+`npm create vite .`  - create app in the same dir  
+`npm create vite subDir`  - create app in a new subDir  
+- Choose React, variant JavaScript
+- `npm i`  
+- `npm run dev`  
+- Now React + Vite page is running :) 
+- How it works: index.html -> main.jsx -> App.jsx
+- Modify  
 
 
 

@@ -2,11 +2,8 @@
   "name": "demo1",
   "version": "1.0.0",
   "main": "index.js",
-  "homepage": "https://xaoccc.github.io/React-Training/demo1/",
   "scripts": {
     "build": "npx babel --watch src --out-dir build --presets react-app/prod",
-    "predeploy": "npm run build",
-    "deploy": "gh-pages -d build"
   },
   "keywords": [],
   "author": "",

@@ -1,5 +1,5 @@
 # React-Training
-React for completely beginners
+React for complete beginners
 ## Demo 1 steps:
 - Create index.html
 - Create dir src
@@ -33,6 +33,6 @@ add "build": "npx babel --watch src --out-dir build --presets react-app/prod"
 - run the newly added command:  
 `npm run build`  
 - Now we can write html in our app.js and babel will translate it to React code in the build dir. Then index.html will display it properly.  
-- Hint/note!!! At this point we can try a project.
+
 
 

@@ -44,7 +44,13 @@ add "build": "npx babel --watch src --out-dir build --presets react-app/prod"
 - `npm run dev`  
 - Now React + Vite page is running :) 
 - How it works: index.html -> main.jsx -> App.jsx
-- Modify  
+- Modify...
+- Create dir components  
+- Create dir styles  
+- Create the components main.jsx, header.jsx and footr.jsx
+- Use App.css for CSS. Put App.css in styles dir
+- export vs export default:  https://medium.com/@heshramsis/understanding-the-difference-between-export-default-and-export-with-named-exports-in-javascript-f0569c221a3  
+
 
 
 

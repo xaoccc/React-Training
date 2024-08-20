@@ -51,6 +51,13 @@ add "build": "npx babel --watch src --out-dir build --presets react-app/prod"
 - Use App.css for CSS. Put App.css in styles dir
 - export vs export default:  https://medium.com/@heshramsis/understanding-the-difference-between-export-default-and-export-with-named-exports-in-javascript-f0569c221a3  
 
-
+## Demo 3:
+- Copy the contents of demo2 and paste it in demo3  
+- Get a free template (or use your own)  
+- copy all css, images, script and other assets into public dir  
+- The css imports will be in the head of index.html, not in main.jsx  
+- The scripts will be also in index.html - after the footer, but inside the body  
+- Create components for each section of the page: header, info, main, footer...  
+- Import all components into main.jsx  
 
 

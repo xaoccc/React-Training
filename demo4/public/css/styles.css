@@ -1,0 +1,45 @@
+#root {
+    width: 100%;
+    margin: 0 auto;    
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    font-family: sans-serif;
+}
+
+header, footer {
+    padding: 2rem;
+    background-color: rgb(197, 226, 235);
+}
+
+main {
+    padding: 2rem;
+    text-align: center;
+}
+
+nav,
+ul {
+    display: flex;
+    flex-direction: row;
+}
+
+ul {
+    gap: 1rem;
+    text-transform: uppercase;
+}
+
+nav {
+    align-items: center;
+    justify-content: space-between;
+}
+
+ul li {
+    list-style-type: none;
+}
+
+footer {
+    text-align: center;
+    background-color: rgb(197, 226, 235);
+}
+

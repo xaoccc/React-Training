@@ -6,6 +6,7 @@ export default [
       "Url": "https://www.hackster.io/agent-hawking-1/the-quantified-cactus-an-easy-plant-soil-moisture-sensor-e65393",
       "Title": "The Quantified Cactus: An Easy Plant Soil Moisture Sensor",
       "Description": "This project is a good learning project to get comfortable with soldering and programming an Arduino.",
+      count: 0,
       "Ratings": [
         5,
         5
@@ -18,6 +19,7 @@ export default [
       "Url": "https://www.hackster.io/agent-hawking-1/book-light-dee7e4",
       "Title": "A beautiful switch-on book light",
       "Description": "Use craft items you have around the house, plus two LEDs and a LilyPad battery holder, to create a useful book light for reading in the dark.",
+      count: 0,
       "Ratings": null
     },
     {
@@ -27,6 +29,7 @@ export default [
       "Url": "https://www.hackster.io/agent-hawking-1/bling-your-laptop-with-an-internet-connected-light-show-30e4db",
       "Title": "Bling your Laptop with an Internet-Connected Light Show",
       "Description": "Create a web-connected light-strip API controllable from your website, using the Particle.io.",
+      count: 0,
       "Ratings": null
     },
     {
@@ -36,6 +39,7 @@ export default [
       "Url": "https://www.hackster.io/agent-hawking-1/create-a-compact-survival-kit-38bfdb",
       "Title": "Create a Compact Survival Kit with LED Track Lighting",
       "Description": "Use an Altoids tin with Chibitronics sticker LEDs to create a light-up compact that doubles as a survival kit for the young hipster",
+      count: 0,
       "Ratings": null
     },
     {
@@ -45,6 +49,7 @@ export default [
       "Url": "https://twitter.com/sailorhg/status/1090107740049952770",
       "Title": "Bubblesort Visualization",
       "Description": "Visualization of sailor scouts sorted by bubblesort algorithm by their planet\u0027s distance from the sun",
+      count: 0,
       "Ratings": null
     },
     {
@@ -54,6 +59,7 @@ export default [
       "Url": "https://twitter.com/sailorhg/status/1090113666911891456",
       "Title": "Light-up Corsage",
       "Description": "Light-up corsage I made with my summer intern.",
+      count: 0,
       "Ratings": null
     },
     {
@@ -63,6 +69,7 @@ export default [
       "Url": "https://twitter.com/sailorhg/status/1090122822007963648",
       "Title": "Pastel hardware kit",
       "Description": "Pastel hardware kits complete with custom manufactured pastel alligator clips.",
+      count: 0,
       "Ratings": null
     },
     {
@@ -72,6 +79,7 @@ export default [
       "Url": "https://twitter.com/sailorhg/status/1090117277540745216",
       "Title": "Heart-shaped LED",
       "Description": "custom molded heart shaped LED with sprinkles.",
+      count: 0,
       "Ratings": null
     },
     {
@@ -81,6 +89,7 @@ export default [
       "Url": "https://www.instagram.com/p/BNvESj-j8PI/",
       "Title": "Black Sweatshirt",
       "Description": "Black sweatshirt hoody with the Sick of the Internet logo.",
+      count: 0,
       "Ratings": null
     },
     {
@@ -90,6 +99,7 @@ export default [
       "Url": "https://www.instagram.com/p/BNm6hZzDoEF/",
       "Title": "Sick of the Internet Pins",
       "Description": "Still some time to enter the pin/sticker giveaway! ",
+      count: 0,
       "Ratings": null
     },
     {
@@ -99,6 +109,7 @@ export default [
       "Url": "https://www.vogueandcode.com/shop/hipster-dev-bro",
       "Title": "Hipster Dev",
       "Description": "Hipster Dev is busy coding away while styled in a camo jacket and orange beanie.",
+      count: 0,
       "Ratings": null
     },
     {
@@ -108,6 +119,7 @@ export default [
       "Url": "https://www.vogueandcode.com/shop/pretty-girls-code-tee",
       "Title": "Pretty Girls Code Tee",
       "Description": "Everyone\u2019s favorite design is finally here on a tee! The Pretty Girls Code crew-neck tee is available in a soft pink with red writing.",
+      count: 0,
       "Ratings": null
     },
     {
@@ -117,6 +129,7 @@ export default [
       "Url": "https://www.vogueandcode.com/shop/ruby-sis-2",
       "Title": "Ruby Sis",
       "Description": "Styled in a dashiki, Ruby Sis is listening to music while coding in her favorite language, Ruby!",
+      count: 0,
       "Ratings": [
         3,
         5,
@@ -145,6 +158,7 @@ export default [
       "Url": "https://www.instagram.com/p/BFktVYPinKQ/",
       "Title": "Holographic Dark Moon Necklace",
       "Description": "Not sure if I\u0027ll be making more, get it while I have it in the store.",
+      count: 0,
       "Ratings": null
     },
     {
@@ -154,6 +168,7 @@ export default [
       "Url": "https://www.instagram.com/p/BEXlpiZCnJ3",
       "Title": "Floppy Crop",
       "Description": "Used up the Diskette fabric today to make 2 of these crops.",
+      count: 0,
       "Ratings": null
     }
   ]

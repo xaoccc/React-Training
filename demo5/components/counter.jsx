@@ -4,10 +4,10 @@ export default function Item(props) {
     const [count, setCount] = useState(props.count);
 
     function increaseCount() {
-        setCount(count => count + 1)
+        setCount(count => count + 1);
     }
     function decreaseCount() {
-        setCount(count => count - 1)
+        setCount(count => count - 1);
     }
     function resetCount() {
         setCount(0)

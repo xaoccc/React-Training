@@ -74,5 +74,21 @@ add "build": "npx babel --watch src --out-dir build --presets react-app/prod"
 - In each imported (i) component declare this data={props.movies[i]}. Props comes from MovieList(props), movies comes from the property movies={moviesdata} in main.jsx. Moviesdata is our list with movies.
  - Movie component also uses props argument and for each move we display this: props.data.movieParameter. movieParameter can be any key available in moviesdata[i] object. 
 
+ ## Demo 5: State
+- Install Vite (follow the steps from demo 2)  
+- Copy the contents of dir blueprint to dir demo 4. This will create some normal web page structure. 
+- Create Timer component and add it to main.jsx in dir components
+- Import useState in Timer
+- Create setTimeout with setTime function 
+
+## Demo 6: Events
+- Continue on demo5.
+- Create Counter component
+- Import and add Counter to main.jsx 
+- The way we add event handlers is similar to inline HTML: `<element onEvent={ functionName }...` We do not call the function!
+- Create 3 functions in counter.jsx: increaseCount, decreaseCount, resetCount. Each of them will use useState to update the count value
+- Each function which uses the current state will execute as follows setValue(currentValue => currentValue change (we can add, divide, concat, etc...)). The syntax currentValue => currentValue change is the proper way to do this.
+- If we do not care about the old value (resetCount), we use the value we want to set: setValue(Value we want)
+
  
 

@@ -1,3 +1,8 @@
+body {
+    margin: 0;
+    padding: 0;
+}
+
 #root {
     width: 100%;
     margin: 0 auto;    
@@ -18,47 +23,13 @@ main {
     text-align: center;
 }
 
-.movie-cover {
-    width: 40rem;
-    height: 25rem;
-    border-radius: 0.5rem;
-}
-
-.movie-cover:hover {
-    cursor: pointer;
-    opacity: 0.7;
-}
-
-button {
-    background-color: #c5e2eb;
-    border: none;
-    border-radius: 0.5rem;
-    padding: 0.75rem 1.5rem;    
-}
-
-button:hover {
-    cursor: pointer;
-    background-color: #222;
-    color: #c5e2eb;
-}
-
-.movies-list {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    background-color: #d2f8fb52;
-    gap: 1rem;
-    padding: 2rem;
-}
-
 nav,
-.navbar {
+ul {
     display: flex;
     flex-direction: row;
 }
 
-.navbar {
+ul {
     gap: 1rem;
     text-transform: uppercase;
 }
@@ -75,5 +46,19 @@ ul li {
 footer {
     text-align: center;
     background-color: rgb(197, 226, 235);
+}
+
+button {
+    background-color: #c5e2eb;
+    border: none;
+    border-radius: 0.5rem;
+    padding: 0.75rem 1.5rem;    
+}
+
+.buttons {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 1rem;
 }
 

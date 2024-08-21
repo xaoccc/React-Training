@@ -74,15 +74,12 @@ add "build": "npx babel --watch src --out-dir build --presets react-app/prod"
 - In each imported (i) component declare this data={props.movies[i]}. Props comes from MovieList(props), movies comes from the property movies={moviesdata} in main.jsx. Moviesdata is our list with movies.
  - Movie component also uses props argument and for each move we display this: props.data.movieParameter. movieParameter can be any key available in moviesdata[i] object. 
 
- ## Demo 5: State
+ ## Demo 5: States and Events
 - Install Vite (follow the steps from demo 2)  
 - Copy the contents of dir blueprint to dir demo 4. This will create some normal web page structure. 
 - Create Timer component and add it to main.jsx in dir components
 - Import useState in Timer
 - Create setTimeout with setTime function 
-
-## Demo 6: Events
-- Continue on demo5.
 - Create Counter component
 - Import and add Counter to main.jsx 
 - The way we add event handlers is similar to inline HTML: `<element onEvent={ functionName }...` We do not call the function!

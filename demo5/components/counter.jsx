@@ -1,6 +1,6 @@
 import { useState } from "react"
 
-export default function Counter(props) {
+export default function Item(props) {
     const [count, setCount] = useState(props.count);
 
     function increaseCount() {
@@ -14,14 +14,15 @@ export default function Counter(props) {
     }
 
     return (
-        <div>
-            <p>Counter <span>{count}</span></p>
+        <li>
+            <img src={props.item['img']} alt={props.item['Title']} />
+            <p>{props.item['Title']}</p>
+            <p>Quantity <span className='qty'>{count}</span></p>
             <div className="buttons">
                 <button onClick={ increaseCount }>+</button>
                 <button onClick={ resetCount }>Clear</button>
-                <button onClick={ decreaseCount }>-</button>
-            </div>
-            
-        </div>
+                <button onClick={ (count > 0) ? decreaseCount : null }>-</button>
+            </div>            
+        </li>
     )
 }

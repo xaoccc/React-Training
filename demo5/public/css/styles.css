@@ -29,9 +29,15 @@ ul {
     flex-direction: row;
 }
 
+
 ul {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    background-color: #d2f8fb52;
     gap: 1rem;
-    text-transform: uppercase;
+    padding: 2rem;
 }
 
 nav {
@@ -62,3 +68,14 @@ button {
     gap: 1rem;
 }
 
+
+img {
+    width: 20rem;
+    height: 15rem;
+    border-radius: 0.5rem;
+}
+
+img:hover {
+    cursor: pointer;
+    opacity: 0.7;
+}

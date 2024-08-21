@@ -5,7 +5,7 @@ export default function Header() {
         <header>
             <nav>
                 <div className="logo">Logo</div>
-                <ul>
+                <ul className="navbar">
                     <li>About</li>
                     <li>Customers</li>
                     <li>History</li>

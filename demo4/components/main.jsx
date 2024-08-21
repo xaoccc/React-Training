@@ -1,9 +1,10 @@
+import MovieList from "./movielist"
+import moviesdata from "./moviesdata"
+
 export default function Main() {
     return (
         <main>
-            <section>
-                <div>Main Content</div>
-            </section>
+            <MovieList movies={moviesdata} headingText="Movie List"  />
         </main>
     )
 }

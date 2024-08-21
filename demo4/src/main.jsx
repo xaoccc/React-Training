@@ -7,9 +7,9 @@ import Footer from '../components/footer.jsx'
 
 
 ReactDOM.createRoot(document.getElementById('root')).render(
-  <React.StrictMode>
-    <Header />
-    <Main />
-    <Footer />
-  </React.StrictMode>,
+    <>
+        <Header />
+        <Main />
+        <Footer />
+    </>
 )

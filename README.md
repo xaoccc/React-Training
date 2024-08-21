@@ -1,5 +1,5 @@
 # React-Training
-React for complete beginners
+React for complete beginners. Prerequisites: You must already know HTML, CSS and JavaScript at least on a beginner level. React is learned only through practice!
 ## Demo 1:
 - Create index.html
 - Create dir src
@@ -34,7 +34,7 @@ add "build": "npx babel --watch src --out-dir build --presets react-app/prod"
 `npm run build`  
 - Now we can write html in our app.js and babel will translate it to React code in the build dir. Then index.html will display it properly.  
 
-## Demo 2:
+## Demo 2: Components
 - Here we use Vite. Vite installs all necessary for a React app.
 - Install Vite:  
 `npm create vite .`  - create app in the same dir  
@@ -51,7 +51,7 @@ add "build": "npx babel --watch src --out-dir build --presets react-app/prod"
 - Use App.css for CSS. Put App.css in styles dir
 - export vs export default:  https://medium.com/@heshramsis/understanding-the-difference-between-export-default-and-export-with-named-exports-in-javascript-f0569c221a3  
 
-## Demo 3:
+## Demo 3: Components
 - Copy the contents of demo2 and paste it in demo3  
 - Get a free template (or use your own)  
 - copy all css, images, script and other assets into public dir  
@@ -60,4 +60,19 @@ add "build": "npx babel --watch src --out-dir build --presets react-app/prod"
 - Create components for each section of the page: header, info, main, footer...  
 - Import all components into main.jsx  
 
+## Demo 4: Props
+- Install Vite (follow the steps from demo 2)  
+- Copy the contents of dir blueprint to dir demo 4. This will create some normal web page structure. 
+- Create an export list with movies(each movie is an object) in a file moviesdata.jsx  
+- Create a movies list component: movielist.jsx  
+- Import both moviesdata.jsx and movielist.jsx to main.jsx
+- Declare props in the Movies component in main.jsx
+- One of the props is moviesdata!
+- Pass these props as an argument to function MovieList()
+- Create a component Movie
+- Import Movie component to movielist.jsx
+- In each imported (i) component declare this data={props.movies[i]}. Props comes from MovieList(props), movies comes from the property movies={moviesdata} in main.jsx. Moviesdata is our list with movies.
+ - Movie component also uses props argument and for each move we display this: props.data.movieParameter. movieParameter can be any key available in moviesdata[i] object. 
+
+ 
 

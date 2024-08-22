@@ -79,3 +79,29 @@ img:hover {
     cursor: pointer;
     opacity: 0.7;
 }
+
+#cart {
+    position: absolute;
+    top: 15%;
+    left: 35%;
+    width: 20rem;
+    height: 10rem;
+    display: none;
+    background-color: aliceblue;
+}
+
+.cart-items {
+    background-color: aliceblue;
+}
+
+.cart-items li img {
+    width: 10rem;
+    height: 7rem;
+    border-radius: 0.25rem;
+
+}
+
+.cart-items li {
+    background-color: aliceblue;
+    padding: 1rem 3rem;
+}

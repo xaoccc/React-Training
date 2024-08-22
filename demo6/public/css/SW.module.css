@@ -1,0 +1,7 @@
+.planetsList {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    flex-direction: row;
+    justify-content: space-around;
+}

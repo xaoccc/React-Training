@@ -87,5 +87,40 @@ add "build": "npx babel --watch src --out-dir build --presets react-app/prod"
 - Each function which uses the current state will execute as follows setValue(currentValue => currentValue change (we can add, divide, concat, etc...)). The syntax currentValue => currentValue change is the proper way to do this.
 - If we do not care about the old value (resetCount), we use the value we want to set: setValue(Value we want)
 
+## Demo 6: Effect Hooks
+- Install Vite (follow the steps from demo 2)  
+- Copy the contents of dir blueprint to dir demo 4. This will create some normal web page structure. 
+- Import and add useEffect in Main
+- Create dependency array like so:  
+
+```
+const [count, setCount] = useState(0);
+const [isManualUpdate, setIsManualUpdate] = useState(false);
+...
+useEffect(() => {  
+        if (!isManualUpdate) {
+            setTimeout(() => setCount(count => count + 1), 1000);
+        } else {
+            setIsManualUpdate(false);
+        }        
+    }, [count])
+    
+```
+Here `[count]` is a dependency array. This means that the code in useEffect will be generally executed only if mount, update or unmount of count has happened. 
+- useEffect is a hook. This means that if there is a change in count, it hooks the code inside it to the app.
+- CSS modules
+  - Naming: `ComponentName.module.css`
+  - Location: `.../appName/public/css`
+  - Import: `import styles from ../public/css/ComponentName.module.css`
+  - Use: `{styles.className}` in the element you want to add this style
+  - Class name syntax: Camel case, because JS uses Camel case
+- Requests
+  - Create StarWars component and insert it into main.jsx
+  - In starwars.jsx use useState and useEffect to fetch the data
+  - In useState the initial state is [] to store the data
+  - Stop the timeout component
+
+
+
  
 

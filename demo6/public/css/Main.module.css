@@ -1,0 +1,13 @@
+main {
+    padding: 2rem;
+    text-align: center;
+    background-color: rgba(141, 248, 230, 0.63);
+}
+
+main ul {
+    justify-content: center;
+}
+
+.listItem {
+    color: gray;
+}

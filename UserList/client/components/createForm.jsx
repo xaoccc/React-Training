@@ -1,4 +1,27 @@
+import { useState, useEffect } from "react";
+
 export default function CreateForm() {
+
+    const [input, setInput] = useState({
+        firstName: '',
+        lastName: '',
+        email: '',
+        phoneNumber: '',
+        imageUrl: '',
+        city: '',
+        country: '',
+        street: '',
+        streetNumber: '',
+    });
+
+    const handleInputChange = (e) => {
+        const { name, value } = e.target;
+        setInput({
+            ...input,
+            [name]: value
+        });
+    };
+    
     return (
         <div className="overlay">
             <div className="backdrop"></div>
@@ -21,14 +44,14 @@ export default function CreateForm() {
                                 <label for="firstName">First name</label>
                                 <div className="input-wrapper">
                                     <span><i className="fa-solid fa-user"></i></span>
-                                    <input id="firstName" name="firstName" type="text" />
+                                    <input id="firstName" name="firstName" type="text" value={input.firstName} onChange={handleInputChange} />
                                 </div>
                             </div>
                             <div className="form-group">
                                 <label for="lastName">Last name</label>
                                 <div className="input-wrapper">
                                     <span><i className="fa-solid fa-user"></i></span>
-                                    <input id="lastName" name="lastName" type="text" />
+                                    <input id="lastName" name="lastName" type="text" value={input.lastName} onChange={handleInputChange} />
                                 </div>
                             </div>
                         </div>
@@ -38,14 +61,14 @@ export default function CreateForm() {
                                 <label for="email">Email</label>
                                 <div className="input-wrapper">
                                     <span><i className="fa-solid fa-envelope"></i></span>
-                                    <input id="email" name="email" type="text" />
+                                    <input id="email" name="email" type="text" value={input.email} onChange={handleInputChange} />
                                 </div>
                             </div>
                             <div className="form-group">
                                 <label for="phoneNumber">Phone number</label>
                                 <div className="input-wrapper">
                                     <span><i className="fa-solid fa-phone"></i></span>
-                                    <input id="phoneNumber" name="phoneNumber" type="text" />
+                                    <input id="phoneNumber" name="phoneNumber" type="text" value={input.phoneNumber} onChange={handleInputChange} />
                                 </div>
                             </div>
                         </div>
@@ -54,7 +77,7 @@ export default function CreateForm() {
                             <label for="imageUrl">Image Url</label>
                             <div className="input-wrapper">
                                 <span><i className="fa-solid fa-image"></i></span>
-                                <input id="imageUrl" name="imageUrl" type="text" />
+                                <input id="imageUrl" name="imageUrl" type="text" value={input.imageUrl} onChange={handleInputChange} />
                             </div>
                         </div>
 
@@ -63,14 +86,14 @@ export default function CreateForm() {
                                 <label for="country">Country</label>
                                 <div className="input-wrapper">
                                     <span><i className="fa-solid fa-map"></i></span>
-                                    <input id="country" name="country" type="text" />
+                                    <input id="country" name="country" type="text" value={input.country} onChange={handleInputChange} />
                                 </div>
                             </div>
                             <div className="form-group">
                                 <label for="city">City</label>
                                 <div className="input-wrapper">
                                     <span><i className="fa-solid fa-city"></i></span>
-                                    <input id="city" name="city" type="text" />
+                                    <input id="city" name="city" type="text" value={input.city} onChange={handleInputChange} />
                                 </div>
                             </div>
                         </div>
@@ -80,14 +103,14 @@ export default function CreateForm() {
                                 <label for="street">Street</label>
                                 <div className="input-wrapper">
                                     <span><i className="fa-solid fa-map"></i></span>
-                                    <input id="street" name="street" type="text" />
+                                    <input id="street" name="street" type="text" value={input.street} onChange={handleInputChange} />
                                 </div>
                             </div>
                             <div className="form-group">
                                 <label for="streetNumber">Street number</label>
                                 <div className="input-wrapper">
                                     <span><i className="fa-solid fa-house-chimney"></i></span>
-                                    <input id="streetNumber" name="streetNumber" type="text" />
+                                    <input id="streetNumber" name="streetNumber" type="text" value={input.streetNumber} onChange={handleInputChange} />
                                 </div>
                             </div>
                         </div>

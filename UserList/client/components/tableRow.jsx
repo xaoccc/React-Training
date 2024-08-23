@@ -1,15 +1,18 @@
-export default function TableRow() {
+export default function TableRow({userData}) {
+
+
+
     return (
-        <tr>
+        <tr id={userData._id}>
             <td>
-                <img src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460__340.png"
+                <img src={userData.imageUrl}
                     alt="Peter's profile" className="image" />
             </td>
-            <td>Peter</td>
-            <td>Johnson</td>
-            <td>peter@abv.bg</td>
-            <td>0812345678</td>
-            <td>June 28, 2022</td>
+            <td>{userData.firstName}</td>
+            <td>{userData.lastName}</td>
+            <td>{userData.email}</td>
+            <td>{userData.phoneNumber}</td>
+            <td>{new Intl.DateTimeFormat('en-US', {year: 'numeric', month: '2-digit',day: '2-digit'}).format(new Date(userData.createdAt))}</td>
 
             <td className="actions">
                 <button className="btn edit-btn" title="Edit">

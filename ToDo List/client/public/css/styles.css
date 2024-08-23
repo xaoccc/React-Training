@@ -281,3 +281,7 @@ body {
 .footer p {
   font-size: 1.2rem;
 }
+
+.addTodo {
+  display: none;
+}

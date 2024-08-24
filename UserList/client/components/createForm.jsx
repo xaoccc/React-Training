@@ -21,31 +21,21 @@ export default function CreateForm({hideCreateUserForm}) {
         setSubmit(true);
     }
 
-    console.log(submit);
-
     useEffect(() => {
 
-        if (submit) {
+        if (submit) {   
+            const data = Object.fromEntries(new FormData(document.querySelector('.user-container form')))
             fetch('http://localhost:3030/jsonstore/users', {
                 method: 'POST',
-                body: JSON.stringify({
-                    firstName: document.getElementById('firstName').value,
-                    lastName: document.getElementById('lastName').value,
-                    email: document.getElementById('email').value,
-                    phoneNumber: document.getElementById('phoneNumber').value,
-                    imageUrl: document.getElementById('imageUrl').value,
-                    city: document.getElementById('city').value,
-                    country: document.getElementById('country').value,
-                    street: document.getElementById('street').value,
-                    streetNumber: document.getElementById('streetNumber').value,
-                    createdAt: new Date(Date.now()).toISOString()
-                }),
+                body: JSON.stringify({...data, createdAt: new Date(Date.now()).toISOString()}),
                 headers: {
                     'Content-Type': 'application/json'
                 }
             })
             .then((res) => res.json())
-            .then((data) => console.log(data))
+            .then((data) => {
+                hideCreateUserForm();
+        })
             .catch((error) => console.log(error))
         }       
 
@@ -77,7 +67,7 @@ export default function CreateForm({hideCreateUserForm}) {
                             </svg>
                         </button>
                     </header>
-                    <form>
+                    <form onSubmit={submitForm}>
                         <div className="form-row">
                             <div className="form-group">
                                 <label htmlFor="firstName">First name</label>
@@ -154,7 +144,7 @@ export default function CreateForm({hideCreateUserForm}) {
                             </div>
                         </div>
                         <div id="form-actions">
-                            <button id="action-save" className="btn" type="submit" onClick={submitForm}>Save</button>
+                            <button id="action-save" className="btn" type="submit" >Save</button>
                             <button id="action-cancel" className="btn" type="button" onClick={hideCreateUserForm}>
                                 Cancel
                             </button>

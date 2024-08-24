@@ -18,22 +18,40 @@ export default function CreateForm({hideCreateUserForm}) {
     const [submit, setSubmit] = useState(false);
 
     function submitForm() {
+        
         setSubmit(true);
     }
 
     useEffect(() => {
 
-        if (submit) {   
+        if (submit) {
+   
             const data = Object.fromEntries(new FormData(document.querySelector('.user-container form')))
+            
             fetch('http://localhost:3030/jsonstore/users', {
                 method: 'POST',
-                body: JSON.stringify({...data, createdAt: new Date(Date.now()).toISOString()}),
+                body: JSON.stringify({
+                    firstName: data.firstName,
+                    lastName: data.lastName,
+                    email: data.email,
+                    phoneNumber: data.phoneNumber,
+                    imageUrl: data.imageUrl,                    
+                    createdAt: new Date().toISOString(),
+                    updatedAt: new Date().toISOString(),
+                    address: {
+                        city: data.city,
+                        country: data.country,
+                        street: data.street,
+                        streetNumber: data.streetNumber,
+                    }
+                }),
                 headers: {
                     'Content-Type': 'application/json'
                 }
             })
             .then((res) => res.json())
             .then((data) => {
+                console.log(data);
                 hideCreateUserForm();
         })
             .catch((error) => console.log(error))

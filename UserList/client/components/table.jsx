@@ -86,7 +86,7 @@ export default function Table() {
                     </tr>
                 </thead>
                 <tbody>
-                    {data.map((userData) => <TableRow userData={userData} key={userData._id} />)}
+                    {data.map((userData) => <TableRow userData={userData} key={userData._id} createUserClickHandler={createUserClickHandler} />)}
                 </tbody>
 
             </table>

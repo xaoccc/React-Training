@@ -1,4 +1,27 @@
-export default function TableRow({userData}) {
+import { useState, useEffect } from "react";
+export default function TableRow({userData, createUserClickHandler}) {
+
+    const [deleteUser, setDeleteUser] = useState(false);
+    const [idToDelete, setIdToDelete] = useState('');
+
+    function deleteUserHandler(e) {
+        setIdToDelete(e.target.parentElement.closest('tr').id);
+        setDeleteUser(true);
+    }
+
+    useEffect(() => {
+        if (deleteUser) {
+            fetch(`http://localhost:3030/jsonstore/users/${idToDelete}`, {
+                method: 'DELETE'
+            })
+            .then(() => {
+                setDeleteUser(false);                
+                document.getElementById(idToDelete).remove();
+                setIdToDelete('');
+            })
+            .catch((error) => console.log(error))
+        }
+    }, [deleteUser])
     
     return (
         <tr id={userData._id}>
@@ -13,7 +36,7 @@ export default function TableRow({userData}) {
             <td>{new Intl.DateTimeFormat('en-US', {year: 'numeric', month: 'short',day: '2-digit'}).format(new Date(userData.createdAt))}</td>
 
             <td className="actions">
-                <button className="btn edit-btn" title="Edit">
+                <button className="btn edit-btn" title="Edit" onClick={createUserClickHandler}>
                     <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="pen-to-square"
                         className="svg-inline--fa fa-pen-to-square" role="img" xmlns="http://www.w3.org/2000/svg"
                         viewBox="0 0 532 512">
@@ -22,7 +45,7 @@ export default function TableRow({userData}) {
                         </path>
                     </svg>
                 </button>
-                <button className="btn delete-btn" title="Delete">
+                <button className="btn delete-btn" title="Delete" onClick={deleteUserHandler}>
                     <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="trash"
                         className="svg-inline--fa fa-trash" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 498 512">
                         <path fill="currentColor"

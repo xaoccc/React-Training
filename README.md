@@ -120,6 +120,41 @@ Here `[count]` is a dependency array. This means that the code in useEffect will
   - In useState the initial state is [] to store the data
   - Stop the timeout component
 
+  ## User List important notes
+- Show contents on click using React in 4 steps:
+    1. The button better be in the same component
+    2. In table.jsx create :
+    ```
+    function createUserClickHandler() {
+        setShowCreateForm(true);
+    }
+    ```
+    3. In table.jsx create useState flag: const [showCreateForm, setShowCreateForm] = useState(false);
+    4. Create conditional statement for showing content:
+    ```
+    {(showCreateForm) ? <CreateForm /> : null}
+    ```
+- Hide content on click in 4 steps
+    1. Create function to set the state to false :
+    ```
+    function hideCreateUserForm() {
+        setShowCreateForm(false);
+    }
+    ```
+    2. Add prop to the component:
+    ```
+    {(showCreateForm) ? <CreateForm hideCreateUserForm={hideCreateUserForm} /> : null}
+    ```
+    3. Use the prop in the form:
+    ```
+    export default function CreateForm({hideCreateUserForm}) ...
+    ```
+    4. Add the prop to the event click handler:
+    ```
+    onClick={hideCreateUserForm}
+    ```
+
+
 
 
  

@@ -1,7 +1,5 @@
 export default function TableRow({userData}) {
-
-
-
+    
     return (
         <tr id={userData._id}>
             <td>
@@ -12,7 +10,7 @@ export default function TableRow({userData}) {
             <td>{userData.lastName}</td>
             <td>{userData.email}</td>
             <td>{userData.phoneNumber}</td>
-            <td>{new Intl.DateTimeFormat('en-US', {year: 'numeric', month: '2-digit',day: '2-digit'}).format(new Date(userData.createdAt))}</td>
+            <td>{new Intl.DateTimeFormat('en-US', {year: 'numeric', month: 'short',day: '2-digit'}).format(new Date(userData.createdAt))}</td>
 
             <td className="actions">
                 <button className="btn edit-btn" title="Edit">

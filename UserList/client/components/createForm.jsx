@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react";
 
-
 export default function CreateForm({hideCreateUserForm}) {
 
     const [input, setInput] = useState({
@@ -17,8 +16,7 @@ export default function CreateForm({hideCreateUserForm}) {
 
     const [submit, setSubmit] = useState(false);
 
-    function submitForm() {
-        
+    function submitForm(e) {
         setSubmit(true);
     }
 
@@ -27,24 +25,26 @@ export default function CreateForm({hideCreateUserForm}) {
         if (submit) {
    
             const data = Object.fromEntries(new FormData(document.querySelector('.user-container form')))
+
+            const entryData = {
+                firstName: data.firstName,
+                lastName: data.lastName,
+                email: data.email,
+                phoneNumber: data.phoneNumber,
+                imageUrl: data.imageUrl,                    
+                createdAt: new Date().toISOString(),
+                updatedAt: new Date().toISOString(),
+                address: {
+                    city: data.city,
+                    country: data.country,
+                    street: data.street,
+                    streetNumber: data.streetNumber,
+                }
+            }
             
             fetch('http://localhost:3030/jsonstore/users', {
                 method: 'POST',
-                body: JSON.stringify({
-                    firstName: data.firstName,
-                    lastName: data.lastName,
-                    email: data.email,
-                    phoneNumber: data.phoneNumber,
-                    imageUrl: data.imageUrl,                    
-                    createdAt: new Date().toISOString(),
-                    updatedAt: new Date().toISOString(),
-                    address: {
-                        city: data.city,
-                        country: data.country,
-                        street: data.street,
-                        streetNumber: data.streetNumber,
-                    }
-                }),
+                body: JSON.stringify(entryData),
                 headers: {
                     'Content-Type': 'application/json'
                 }

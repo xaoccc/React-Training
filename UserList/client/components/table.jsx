@@ -1,12 +1,15 @@
 import { useState, useEffect } from "react";
 import TableRow from "./tableRow";
 import CreateForm from "./createForm";
+import UserDetails from "./userDetails";
 
 
 export default function Table() {
 
     const [data, setData] = useState([]);
     const [showCreateForm, setShowCreateForm] = useState(false);
+    const [showUserInfo, setShowUserInfo] = useState(false);
+    const [getUserInfo, setGetUserInfo] = useState({});
 
     useEffect(() => {
         fetch('http://localhost:3030/jsonstore/users')
@@ -23,6 +26,22 @@ export default function Table() {
 
     function hideCreateUserForm() {
         setShowCreateForm(false);
+    }
+
+    
+
+    function showUserInfoClickHandler(e) {
+        let userInfo = data.find((entry) => entry._id === e.target.closest('tr').id);
+        console.log(userInfo);
+
+        setGetUserInfo(userInfo);
+        console.log(getUserInfo);
+        setShowUserInfo(true);
+    }
+
+
+    function hideUserInfoClickHandler() {
+        setShowUserInfo(false);
     }
 
     return (
@@ -86,13 +105,14 @@ export default function Table() {
                     </tr>
                 </thead>
                 <tbody>
-                    {data.map((userData) => <TableRow userData={userData} key={userData._id} createUserClickHandler={createUserClickHandler} />)}
+                    {data.map((userData) => <TableRow userData={userData} key={userData._id} createUserClickHandler={createUserClickHandler} showUserInfoClickHandler={showUserInfoClickHandler} />)}
                 </tbody>
 
             </table>
             <button className="btn-add btn" onClick={createUserClickHandler}>Add new user</button>
 
             {(showCreateForm) ? <CreateForm hideCreateUserForm={hideCreateUserForm} /> : null}
+            {(showUserInfo) ? <UserDetails hideUserInfoClickHandler={hideUserInfoClickHandler} userInfo={getUserInfo} /> : null}
         </div>
     )
 }

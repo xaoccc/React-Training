@@ -28,18 +28,12 @@ export default function Table() {
         setShowCreateForm(false);
     }
 
-    
-
     function showUserInfoClickHandler(e) {
         let userInfo = data.find((entry) => entry._id === e.target.closest('tr').id);
-        console.log(userInfo);
-
         setGetUserInfo(userInfo);
-        console.log(getUserInfo);
         setShowUserInfo(true);
     }
-
-
+    
     function hideUserInfoClickHandler() {
         setShowUserInfo(false);
     }

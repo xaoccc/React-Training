@@ -1,4 +1,4 @@
-export default function UserDetails({hideUserInfoClickHandler}, {userInfo}) {
+export default function UserDetails({hideUserInfoClickHandler, userInfo}) {
 
     console.log(userInfo);
     return (
@@ -26,17 +26,17 @@ export default function UserDetails({hideUserInfoClickHandler}, {userInfo}) {
                             <p>User Id: <strong>{userInfo._id}</strong></p>
                             <p>
                                 Full Name:
-                                <strong> Peter Johnson </strong>
+                                <strong>{userInfo.firstName} {userInfo.lastName}</strong>
                             </p>
-                            <p>Email: <strong>peter@abv.bg</strong></p>
-                            <p>Phone Number: <strong>0812345678</strong></p>
+                            <p>Email: <strong>{userInfo.email}</strong></p>
+                            <p>Phone Number: <strong>{userInfo.phoneNumber}</strong></p>
                             <p>
                                 Address:
-                                <strong> Bulgaria, Sofia, Aleksandar Malinov 78 </strong>
+                                <strong> {userInfo.address.country}, {userInfo.address.city}, {userInfo.address.street} {userInfo.address.streetNumber} </strong>
                             </p>
 
-                            <p>Created on: <strong>Wednesday, June 28, 2022</strong></p>
-                            <p>Modified on: <strong>Thursday, June 29, 2022</strong></p>
+                            <p>Created on: <strong>{userInfo.createdAt}</strong></p>
+                            <p>Modified on: <strong>{userInfo.updatedAt}</strong></p>
                         </div>
                     </div>
                 </div>

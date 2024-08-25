@@ -3,7 +3,7 @@ export default function UserDetails({hideUserInfoClickHandler, userInfo}) {
     console.log(userInfo);
     return (
         <div className="overlay">
-            <div className="backdrop"></div>
+            <div className="backdrop" onClick={hideUserInfoClickHandler}></div>
             <div className="modal">
                 <div className="detail-container">
                     <header className="headers">

@@ -5,7 +5,6 @@ import UserDetails from "./userDetails";
 
 
 export default function Table() {
-
     const [data, setData] = useState([]);
     const [showCreateForm, setShowCreateForm] = useState(false);
     const [showUserInfo, setShowUserInfo] = useState(false);

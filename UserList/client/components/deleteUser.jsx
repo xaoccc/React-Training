@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react";
 export default function DeleteUser({hideDeleteForm, idToDelete}) {
-    console.log(idToDelete);
     const [deleteUser, setDeleteUser] = useState(false);
 
     function deleteUserHandler() {

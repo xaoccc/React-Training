@@ -49,7 +49,7 @@ export default function CreateForm({hideUserForm, userData}) {
                 }
             })
             .then(() => {
-                hideUserForm();
+                hideUserForm();                
             })
             .catch((error) => console.log(error))
         } else if (userData) {
@@ -60,6 +60,9 @@ export default function CreateForm({hideUserForm, userData}) {
                 },
                 body: JSON.stringify({...entryData, _id: userData._id}),
             })
+            // .then(() => {
+            //     hideUserForm();                
+            // })
             .catch((error) => console.log(error))
         }       
 

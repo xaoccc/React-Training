@@ -56,7 +56,6 @@ export default function Table({input, criteria, startSearch}) {
 
     function editUserClickHandler(e) {
         let userInfo = data.find((entry) => entry._id === e.target.closest('tr').id);
-        console.log(userInfo);
         setGetUserInfo(userInfo);
     }
     

@@ -1,16 +1,22 @@
 import { useState, useEffect } from "react";
 import CreateForm from "./createForm";
+import DeleteUser from "./deleteUser";
 export default function TableRow({userData, showUserInfoClickHandler, editUserClickHandler}) {
-
-    const [deleteUser, setDeleteUser] = useState(false);
+    
     const [showEditForm, setShowEditForm] = useState(false);
+    const [showDeleteForm, setShowDeleteForm] = useState(false);
+
     const [editUser, setEditUser] = useState(false);
     const [idToEdit, setIdToEdit] = useState('');
     const [idToDelete, setIdToDelete] = useState('');
 
     function deleteUserHandler(e) {
+        setShowDeleteForm(true);
         setIdToDelete(e.target.parentElement.closest('tr').id);
-        setDeleteUser(true);
+    }
+
+    function hideDeleteForm() {
+        setShowDeleteForm(false);
     }
 
     function editUserClickHandler(e) {
@@ -21,21 +27,6 @@ export default function TableRow({userData, showUserInfoClickHandler, editUserCl
     function hideUserForm() {
         setShowEditForm(false);
     }
-
-    useEffect(() => {
-        if (deleteUser) {
-            fetch(`http://localhost:3030/jsonstore/users/${idToDelete}`, {
-                method: 'DELETE'
-            })
-            .then(() => {
-                setDeleteUser(false);                
-                document.getElementById(idToDelete).remove();
-                setIdToDelete('');
-            })
-            .catch((error) => console.log(error))
-        }
-    }, [deleteUser])
-
 
     useEffect(() => {
         if (editUser) {
@@ -84,7 +75,7 @@ export default function TableRow({userData, showUserInfoClickHandler, editUserCl
                     </svg>
                 </button>
             </td>
-            
+            {(showDeleteForm) ? <td><DeleteUser hideDeleteForm={hideDeleteForm} idToDelete={idToDelete} /></td> : null}
             {(showEditForm) ? <td><CreateForm hideUserForm={hideUserForm} userData={userData} key={userData._id}/></td> : null}
             
         </tr>

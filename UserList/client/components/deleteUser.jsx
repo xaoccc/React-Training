@@ -1,4 +1,24 @@
-export default function DeleteUser() {
+import { useState, useEffect } from "react";
+export default function DeleteUser({hideDeleteForm, idToDelete}) {
+    console.log(idToDelete);
+    const [deleteUser, setDeleteUser] = useState(false);
+
+    function deleteUserHandler() {
+        setDeleteUser(true);
+    }
+
+    useEffect(() => {
+        if (deleteUser) {
+                fetch(`http://localhost:3030/jsonstore/users/${idToDelete}`, {
+                    method: 'DELETE'
+                })
+                .then(() => {
+                    setDeleteUser(false);                
+                    document.getElementById(idToDelete).remove();
+                })
+                .catch((error) => console.log(error))
+            }
+        }, [deleteUser])
     return (
         <div className="overlay">
             <div className="backdrop"></div>
@@ -6,7 +26,7 @@ export default function DeleteUser() {
                 <div className="confirm-container">
                     <header className="headers">
                         <h2>Are you sure you want to delete this account?</h2>
-                        <button className="btn close">
+                        <button className="btn close" onClick={hideDeleteForm}>
                             <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="xmark"
                                 className="svg-inline--fa fa-xmark" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512">
                                 <path fill="currentColor"
@@ -17,7 +37,7 @@ export default function DeleteUser() {
                     </header>
                     <div className="actions">
                         <div id="form-actions">
-                            <button id="action-save" className="btn" type="submit">Delete</button>
+                            <button id="action-save" className="btn" type="submit" onClick={deleteUserHandler}>Delete</button>
                             <button id="action-cancel" className="btn" type="button">
                                 Cancel
                             </button>

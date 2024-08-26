@@ -2,19 +2,39 @@ import { useState, useEffect } from "react";
 import TableRow from "./tableRow";
 import CreateForm from "./createForm";
 import UserDetails from "./userDetails";
+import NoUsers from "./noUsers";
 
 
-export default function Table() {
+export default function Table({input, criteria, startSearch}) {
     const [data, setData] = useState([]);
     const [showCreateForm, setShowCreateForm] = useState(false);
     const [showUserInfo, setShowUserInfo] = useState(false);
     const [getUserInfo, setGetUserInfo] = useState({});
 
+
+    useEffect(() => {
+        if (startSearch) {  
+            fetch('http://localhost:3030/jsonstore/users')
+            .then((res) => res.json())
+            .then((result) => {
+                setData(Object.values(result));
+                console.log(Object.values(result));
+                if (startSearch) {                   
+                    setData(Object.values(result).filter(userData => userData[criteria] === input));
+                }
+                
+            })
+            .catch((error) => console.log(error))
+        }
+        
+    }, [startSearch])
+
+
     useEffect(() => {
         fetch('http://localhost:3030/jsonstore/users')
             .then((res) => res.json())
             .then((result) => {
-                setData(Object.values(result));
+                setData(Object.values(result));               
             })
             .catch((error) => console.log(error))
     }, [])
@@ -44,7 +64,10 @@ export default function Table() {
         setShowUserInfo(false);
     }
 
+
     return (
+
+
         <div className="table-wrapper" >
             {/* <div className="loading-shade">s
                     <div className="spinner"></div>
@@ -105,12 +128,12 @@ export default function Table() {
                     </tr>
                 </thead>
                 <tbody>
+                    {(data.length === 0) ? <NoUsers /> : null}
                     {data.map((userData) => <TableRow userData={userData} key={userData._id} createUserClickHandler={createUserClickHandler} showUserInfoClickHandler={showUserInfoClickHandler} editUserClickHandler={editUserClickHandler} />)}
                 </tbody>
 
             </table>
             <button className="btn-add btn" onClick={createUserClickHandler}>Add new user</button>
-
             
             {(showCreateForm) ? <CreateForm hideUserForm={hideUserForm} /> : null}
             {(showUserInfo) ? <UserDetails hideUserInfoClickHandler={hideUserInfoClickHandler} userInfo={getUserInfo} /> : null}

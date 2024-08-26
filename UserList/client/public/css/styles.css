@@ -649,6 +649,9 @@ ul {
   text-align: center;
   margin-right: 30px;
 }
+.table-overlap svg {
+  height: 3rem;
+}
 
 .loading-shade svg {
   font-size: 5rem;

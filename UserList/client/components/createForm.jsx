@@ -95,14 +95,14 @@ export default function CreateForm({hideUserForm, userData}) {
                                 <label htmlFor="firstName">First name</label>
                                 <div className="input-wrapper">
                                     <span><i className="fa-solid fa-user"></i></span>
-                                    <input id="firstName" name="firstName" type="text" value={input.firstName} onChange={handleInputChange} />
+                                    <input id="firstName" name="firstName" type="text" value={input.firstName} onChange={handleInputChange} required />
                                 </div>
                             </div>
                             <div className="form-group">
                                 <label htmlFor="lastName">Last name</label>
                                 <div className="input-wrapper">
                                     <span><i className="fa-solid fa-user"></i></span>
-                                    <input id="lastName" name="lastName" type="text" value={input.lastName} onChange={handleInputChange} />
+                                    <input id="lastName" name="lastName" type="text" value={input.lastName} onChange={handleInputChange} required />
                                 </div>
                             </div>
                         </div>
@@ -112,14 +112,14 @@ export default function CreateForm({hideUserForm, userData}) {
                                 <label htmlFor="email">Email</label>
                                 <div className="input-wrapper">
                                     <span><i className="fa-solid fa-envelope"></i></span>
-                                    <input id="email" name="email" type="text" value={input.email} onChange={handleInputChange} />
+                                    <input id="email" name="email" type="text" value={input.email} onChange={handleInputChange} required />
                                 </div>
                             </div>
                             <div className="form-group">
                                 <label htmlFor="phoneNumber">Phone number</label>
                                 <div className="input-wrapper">
                                     <span><i className="fa-solid fa-phone"></i></span>
-                                    <input id="phoneNumber" name="phoneNumber" type="text" value={input.phoneNumber} onChange={handleInputChange} />
+                                    <input id="phoneNumber" name="phoneNumber" type="text" value={input.phoneNumber} onChange={handleInputChange} required />
                                 </div>
                             </div>
                         </div>
@@ -128,7 +128,7 @@ export default function CreateForm({hideUserForm, userData}) {
                             <label htmlFor="imageUrl">Image Url</label>
                             <div className="input-wrapper">
                                 <span><i className="fa-solid fa-image"></i></span>
-                                <input id="imageUrl" name="imageUrl" type="text" value={input.imageUrl} onChange={handleInputChange} />
+                                <input id="imageUrl" name="imageUrl" type="text" value={input.imageUrl} onChange={handleInputChange} required />
                             </div>
                         </div>
 
@@ -137,14 +137,14 @@ export default function CreateForm({hideUserForm, userData}) {
                                 <label htmlFor="country">Country</label>
                                 <div className="input-wrapper">
                                     <span><i className="fa-solid fa-map"></i></span>
-                                    <input id="country" name="country" type="text" value={input.country} onChange={handleInputChange} />
+                                    <input id="country" name="country" type="text" value={input.country} onChange={handleInputChange} required />
                                 </div>
                             </div>
                             <div className="form-group">
                                 <label htmlFor="city">City</label>
                                 <div className="input-wrapper">
                                     <span><i className="fa-solid fa-city"></i></span>
-                                    <input id="city" name="city" type="text" value={input.city} onChange={handleInputChange} />
+                                    <input id="city" name="city" type="text" value={input.city} onChange={handleInputChange} required />
                                 </div>
                             </div>
                         </div>
@@ -154,14 +154,14 @@ export default function CreateForm({hideUserForm, userData}) {
                                 <label htmlFor="street">Street</label>
                                 <div className="input-wrapper">
                                     <span><i className="fa-solid fa-map"></i></span>
-                                    <input id="street" name="street" type="text" value={input.street} onChange={handleInputChange} />
+                                    <input id="street" name="street" type="text" value={input.street} onChange={handleInputChange} required />
                                 </div>
                             </div>
                             <div className="form-group">
                                 <label htmlFor="streetNumber">Street number</label>
                                 <div className="input-wrapper">
                                     <span><i className="fa-solid fa-house-chimney"></i></span>
-                                    <input id="streetNumber" name="streetNumber" type="text" value={input.streetNumber} onChange={handleInputChange} />
+                                    <input id="streetNumber" name="streetNumber" type="text" value={input.streetNumber} onChange={handleInputChange} required />
                                 </div>
                             </div>
                         </div>

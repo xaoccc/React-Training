@@ -1,25 +1,9 @@
 import { useState, useEffect } from "react";
 
-export default function SearchBar() {
+export default function SearchBar({search}) {
 
-    const [criteria, setCriteria] = useState('');
+    
 
-    const [input, setInput] = useState({
-        firstName: '',
-        lastName: '',
-        email: '',
-        phoneNumber: '',
-        search: '',
-        notSelected: '',
-    });
-
-    const handleInputChange = (e) => {
-        const { name, value } = e.target;
-        setInput(prevInput => ({
-            ...prevInput,
-            [name]: value
-        }));
-    };
 
     return (
         <form className="search-form">
@@ -34,20 +18,20 @@ export default function SearchBar() {
                 <span>Users</span>
             </h2>
             <div className="search-input-container">
-                <input type="text" placeholder="Please, select the search criteria" name="search" value={input.search} onChange={handleInputChange} />
+                <input type="text" placeholder="Please, select the search criteria" name="search"  />
 
                 <button className="btn close-btn">
                     <i className="fa-solid fa-xmark"></i>
                 </button>
 
-                <button className="btn" title="Please, select the search criteria">
+                <button className="btn" title="Please, select the search criteria" onClick={search}>
                     <i className="fa-solid fa-magnifying-glass"></i>
                 </button>
             </div>
 
             <div className="filter">
                 <span>Search Criteria:</span>
-                <select name="criteria" className="criteria" value={criteria} onChange={(e) => setCriteria(e.target.value)}>
+                <select name="criteria" className="criteria" >
                     <option value="">Not selected</option>
                     <option value="firstName">First Name</option>
                     <option value="lastName">Last Name</option>

@@ -15,14 +15,12 @@ export default function TableRow({userData, showUserInfoClickHandler, editUserCl
 
     function editUserClickHandler(e) {
         setIdToEdit(e.target.parentElement.closest('tr').id);
-        setEditUser(e.target.parentElement.closest('tr'));
-        
+        setEditUser(e.target.parentElement.closest('tr'));        
     }
 
     function hideUserForm() {
         setShowEditForm(false);
     }
-
 
     useEffect(() => {
         if (deleteUser) {
@@ -56,7 +54,7 @@ export default function TableRow({userData, showUserInfoClickHandler, editUserCl
             <td>{userData.lastName}</td>
             <td>{userData.email}</td>
             <td>{userData.phoneNumber}</td>
-            <td>{new Intl.DateTimeFormat('en-US', {year: 'numeric', month: 'short',day: '2-digit'}).format(new Date(userData.createdAt))}</td>
+            <td>{new Intl.DateTimeFormat('en-US', {year: 'numeric', month: 'long',day: '2-digit'}).format(new Date(userData.createdAt))}</td>
 
             <td className="actions">
                 <button className="btn edit-btn" title="Edit" onClick={editUserClickHandler}>

@@ -19,7 +19,7 @@ export default function UserDetails({hideUserInfoClickHandler, userInfo}) {
                     </header>
                     <div className="content">
                         <div className="image-container">
-                            <img src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460__340.png" alt=""
+                            <img src={userInfo.imageUrl} alt=""
                                 className="image" />
                         </div>
                         <div className="user-details">
@@ -35,8 +35,8 @@ export default function UserDetails({hideUserInfoClickHandler, userInfo}) {
                                 <strong> {userInfo.address.country}, {userInfo.address.city}, {userInfo.address.street} {userInfo.address.streetNumber} </strong>
                             </p>
 
-                            <p>Created on: <strong>{userInfo.createdAt}</strong></p>
-                            <p>Modified on: <strong>{userInfo.updatedAt}</strong></p>
+                            <p>Created on: <strong>{new Intl.DateTimeFormat('en-US', {year: 'numeric', month: 'long',day: '2-digit'}).format(new Date(userInfo.createdAt))}</strong></p>
+                            <p>Modified on: <strong>{new Intl.DateTimeFormat('en-US', {year: 'numeric', month: 'long',day: '2-digit'}).format(new Date(userInfo.updatedAt))}</strong></p>
                         </div>
                     </div>
                 </div>

@@ -1,12 +1,26 @@
 import { useState, useEffect } from "react";
-export default function TableRow({userData, createUserClickHandler, showUserInfoClickHandler}) {
+import CreateForm from "./createForm";
+export default function TableRow({userData, showUserInfoClickHandler, editUserClickHandler}) {
 
     const [deleteUser, setDeleteUser] = useState(false);
+    const [showEditForm, setShowEditForm] = useState(false);
+    const [editUser, setEditUser] = useState(false);
+    const [idToEdit, setIdToEdit] = useState('');
     const [idToDelete, setIdToDelete] = useState('');
 
     function deleteUserHandler(e) {
         setIdToDelete(e.target.parentElement.closest('tr').id);
         setDeleteUser(true);
+    }
+
+    function editUserClickHandler(e) {
+        setIdToEdit(e.target.parentElement.closest('tr').id);
+        setEditUser(e.target.parentElement.closest('tr'));
+        
+    }
+
+    function hideUserForm() {
+        setShowEditForm(false);
     }
 
 
@@ -23,6 +37,14 @@ export default function TableRow({userData, createUserClickHandler, showUserInfo
             .catch((error) => console.log(error))
         }
     }, [deleteUser])
+
+
+    useEffect(() => {
+        if (editUser) {
+            setShowEditForm(true);
+        }
+    }, [editUser])
+
     
     return (
         <tr id={userData._id}>
@@ -37,7 +59,7 @@ export default function TableRow({userData, createUserClickHandler, showUserInfo
             <td>{new Intl.DateTimeFormat('en-US', {year: 'numeric', month: 'short',day: '2-digit'}).format(new Date(userData.createdAt))}</td>
 
             <td className="actions">
-                <button className="btn edit-btn" title="Edit" onClick={createUserClickHandler}>
+                <button className="btn edit-btn" title="Edit" onClick={editUserClickHandler}>
                     <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="pen-to-square"
                         className="svg-inline--fa fa-pen-to-square" role="img" xmlns="http://www.w3.org/2000/svg"
                         viewBox="0 0 532 512">
@@ -64,6 +86,9 @@ export default function TableRow({userData, createUserClickHandler, showUserInfo
                     </svg>
                 </button>
             </td>
+            
+            {(showEditForm) ? <td><CreateForm hideUserForm={hideUserForm} userData={userData} key={userData._id}/></td> : null}
+            
         </tr>
     )
 }

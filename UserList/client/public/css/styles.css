@@ -671,6 +671,7 @@ ul {
   position: relative;
   padding: 5px 0px;
   border-bottom: 1px solid #ccc;
+  color: #000;
 }
 
 .header h2 {
@@ -851,11 +852,13 @@ ul {
   align-items: center;
   justify-content: space-between;
   margin-top: 15px;
+  
 }
 
 .form-group {
   margin-right: 10px;
   width: 47%;
+  color: #000;
 }
 
 .form-group .form-error {

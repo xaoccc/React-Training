@@ -19,11 +19,12 @@ export default function Table() {
             .catch((error) => console.log(error))
     }, [])
 
+
     function createUserClickHandler() {
         setShowCreateForm(true);
     }
 
-    function hideCreateUserForm() {
+    function hideUserForm() {
         setShowCreateForm(false);
     }
 
@@ -31,6 +32,12 @@ export default function Table() {
         let userInfo = data.find((entry) => entry._id === e.target.closest('tr').id);
         setGetUserInfo(userInfo);
         setShowUserInfo(true);
+    }
+
+    function editUserClickHandler(e) {
+        let userInfo = data.find((entry) => entry._id === e.target.closest('tr').id);
+        console.log(userInfo);
+        setGetUserInfo(userInfo);
     }
     
     function hideUserInfoClickHandler() {
@@ -98,13 +105,14 @@ export default function Table() {
                     </tr>
                 </thead>
                 <tbody>
-                    {data.map((userData) => <TableRow userData={userData} key={userData._id} createUserClickHandler={createUserClickHandler} showUserInfoClickHandler={showUserInfoClickHandler} />)}
+                    {data.map((userData) => <TableRow userData={userData} key={userData._id} createUserClickHandler={createUserClickHandler} showUserInfoClickHandler={showUserInfoClickHandler} editUserClickHandler={editUserClickHandler} />)}
                 </tbody>
 
             </table>
             <button className="btn-add btn" onClick={createUserClickHandler}>Add new user</button>
 
-            {(showCreateForm) ? <CreateForm hideCreateUserForm={hideCreateUserForm} /> : null}
+            
+            {(showCreateForm) ? <CreateForm hideUserForm={hideUserForm} /> : null}
             {(showUserInfo) ? <UserDetails hideUserInfoClickHandler={hideUserInfoClickHandler} userInfo={getUserInfo} /> : null}
         </div>
     )

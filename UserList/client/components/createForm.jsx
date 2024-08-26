@@ -1,31 +1,29 @@
 import { useState, useEffect } from "react";
 
-export default function CreateForm({hideCreateUserForm}) {
+export default function CreateForm({hideUserForm, userData}) {
 
     const [input, setInput] = useState({
-        firstName: '',
-        lastName: '',
-        email: '',
-        phoneNumber: '',
-        imageUrl: '',
-        city: '',
-        country: '',
-        street: '',
-        streetNumber: '',
+        firstName: (userData) ? userData.firstName : '',
+        lastName: (userData) ? userData.lastName : '',
+        email: (userData) ? userData.email : '',
+        phoneNumber: (userData) ? userData.phoneNumber : '',
+        imageUrl: (userData) ? userData.imageUrl : '',
+        city: (userData) ? userData.address.city : '',
+        country: (userData) ? userData.address.country : '',
+        street: (userData) ? userData.address.street : '',
+        streetNumber: (userData) ? userData.address.streetNumber : '',
     });
 
     const [submit, setSubmit] = useState(false);
 
     function submitForm(e) {
+        // e.preventDefault();
         setSubmit(true);
     }
 
     useEffect(() => {
 
-        if (submit) {
-   
-            const data = Object.fromEntries(new FormData(document.querySelector('.user-container form')))
-
+        const data = Object.fromEntries(new FormData(document.querySelector('.user-container form')))
             const entryData = {
                 firstName: data.firstName,
                 lastName: data.lastName,
@@ -41,7 +39,8 @@ export default function CreateForm({hideCreateUserForm}) {
                     streetNumber: data.streetNumber,
                 }
             }
-            
+        // Check if there is user data and make a post or put request 
+        if (submit && !userData) {               
             fetch('http://localhost:3030/jsonstore/users', {
                 method: 'POST',
                 body: JSON.stringify(entryData),
@@ -49,17 +48,22 @@ export default function CreateForm({hideCreateUserForm}) {
                     'Content-Type': 'application/json'
                 }
             })
-            .then((res) => res.json())
-            .then((data) => {
-                console.log(data);
-                hideCreateUserForm();
-        })
+            .then(() => {
+                hideUserForm();
+            })
+            .catch((error) => console.log(error))
+        } else if (userData) {
+            fetch(`http://localhost:3030/jsonstore/users/${userData._id}`, {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({...entryData, _id: userData._id}),
+            })
             .catch((error) => console.log(error))
         }       
 
-    }, [submit])
-
-   
+    }, [submit])   
 
     const handleInputChange = (e) => {
         const { name, value } = e.target;
@@ -71,12 +75,12 @@ export default function CreateForm({hideCreateUserForm}) {
     
     return (
         <div className="overlay">
-            <div className="backdrop" onClick={hideCreateUserForm}></div>
+            <div className="backdrop" onClick={hideUserForm}></div>
             <div className="modal">
                 <div className="user-container">
                     <header className="headers">
-                        <h2>Add User</h2>
-                        <button className="btn close" onClick={hideCreateUserForm}>
+                        <h2>Add/Edit User</h2>
+                        <button className="btn close" onClick={hideUserForm}>
                             <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="xmark"
                                 className="svg-inline--fa fa-xmark" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512">
                                 <path fill="currentColor"
@@ -163,7 +167,7 @@ export default function CreateForm({hideCreateUserForm}) {
                         </div>
                         <div id="form-actions">
                             <button id="action-save" className="btn" type="submit" >Save</button>
-                            <button id="action-cancel" className="btn" type="button" onClick={hideCreateUserForm}>
+                            <button id="action-cancel" className="btn" type="button" onClick={hideUserForm}>
                                 Cancel
                             </button>
                         </div>

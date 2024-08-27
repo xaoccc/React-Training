@@ -154,6 +154,54 @@ Here `[count]` is a dependency array. This means that the code in useEffect will
     onClick={hideCreateUserForm}
     ```
 
+## Demo 7: Forms
+### Uncontrolled Forms
+- Their input values are in the DOM
+- We have no power over the state
+- No recommended for React
+### Controlled Forms
+- Input value is kept in the state, therefore we can control it
+- There are custom handlers for change/sumbmit events
+- Using controlled forms:
+    - In every input add attribute onChange={inputNameChangeHandler}
+    - Create function inputNameChangeHandler for every input
+    - In React the value="" is defaultValue="" and value in controlled forms is always getting the data from React value={}
+    - create state handler for each input field: [value, setValue] = useState('')
+    - onBlur={} - used for input validation
+    - There are at least 3 ways to submit without reloading the whole page:
+        1. Attach an onClick on the button and button is type button:
+        ```
+        <button type="button" onClick={submitHandler}>Register</button>
+        ```
+        submitHandler has no preventDefault inside!  
+        ```
+        function submitHandler() {
+            ...
+        }
+        ```
+
+        2. Button is of type submit (default for forms) 
+        ```
+        <button onClick={submitHandler}>Register</button>
+        ```
+        submitHandler has preventDefault inside! 
+        ```
+        function submitHandler(e) {
+            e.preventDefault()
+            ...
+        }
+        ```
+        3. Attach onSubmit to the form:
+        ```
+        <form onSubmit={submitHandler}>...
+        ```
+        Again, submitHandler has preventDefault inside! 
+        ```
+        function submitHandler(e) {
+            e.preventDefault()
+            ...
+        }
+
 
 
 

@@ -1,9 +1,10 @@
+import UncontrolledForm from "./UncontrolledForm"
+import ControlledForm from "./ControlledForm"
+
 export default function Main() {
     return (
         <main>
-            <section>
-                <div>Main Content</div>
-            </section>
+            <ControlledForm />
         </main>
     )
 }

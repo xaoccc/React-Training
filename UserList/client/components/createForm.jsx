@@ -17,6 +17,7 @@ export default function CreateForm({hideUserForm, userData}) {
     const [submit, setSubmit] = useState(false);  
 
     function submitForm(e) {
+        e.preventDefault();
         setSubmit(true);
     }
 
@@ -60,13 +61,15 @@ export default function CreateForm({hideUserForm, userData}) {
                 },
                 body: JSON.stringify({...entryData, _id: userData._id}),
             })
-            .then(() => {
-                hideUserForm();                
+            .then(() => {                
+                hideUserForm();               
             })
             .catch((error) => console.log(error))
         }       
 
-    }, [submit])   
+    }, [submit]) 
+
+    
 
     const handleInputChange = (e) => {
         const { name, value } = e.target;

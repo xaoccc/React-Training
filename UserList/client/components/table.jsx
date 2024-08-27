@@ -46,6 +46,8 @@ export default function Table({input, criteria, startSearch}) {
 
     function hideUserForm() {
         setShowCreateForm(false);
+
+        
     }
 
     function showUserInfoClickHandler(e) {

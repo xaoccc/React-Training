@@ -16,7 +16,8 @@ export default function ControlledFormPipe({formRef}) {
 
     const [formValue, setFormValue] = useState(initialState);
 
-    function submitHandler() {
+    function submitHandler(e) {
+        e.preventDefault();
         console.log(formValue);
     }
 
@@ -78,7 +79,7 @@ export default function ControlledFormPipe({formRef}) {
 
                 </div>
                 <div>
-                    <button type="button" onClick={submitHandler}>Register</button>
+                    {/* <button type="button" onClick={submitHandler}>Register</button> */}
                     <button type="button" onClick={resetHandler}>Reset</button>
                 </div>
             </form>

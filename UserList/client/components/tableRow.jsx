@@ -5,9 +5,6 @@ export default function TableRow({userData, showUserInfoClickHandler, editUserCl
     
     const [showEditForm, setShowEditForm] = useState(false);
     const [showDeleteForm, setShowDeleteForm] = useState(false);
-
-    const [editUser, setEditUser] = useState(false);
-    const [idToEdit, setIdToEdit] = useState('');
     const [idToDelete, setIdToDelete] = useState('');
 
     function deleteUserHandler(e) {
@@ -19,20 +16,13 @@ export default function TableRow({userData, showUserInfoClickHandler, editUserCl
         setShowDeleteForm(false);
     }
 
-    function editUserClickHandler(e) {
-        setIdToEdit(e.target.parentElement.closest('tr').id);
-        setEditUser(e.target.parentElement.closest('tr'));        
+    function editUserClickHandler() {
+        setShowEditForm(true);      
     }
 
     function hideUserForm() {
         setShowEditForm(false);
     }
-
-    useEffect(() => {
-        if (editUser) {
-            setShowEditForm(true);
-        }
-    }, [editUser])
 
     
     return (

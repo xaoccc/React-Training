@@ -14,31 +14,30 @@ export default function CreateForm({hideUserForm, userData}) {
         streetNumber: (userData) ? userData.address.streetNumber : '',
     });
 
-    const [submit, setSubmit] = useState(false);
+    const [submit, setSubmit] = useState(false);  
 
     function submitForm(e) {
-        // e.preventDefault();
         setSubmit(true);
     }
 
     useEffect(() => {
 
         const data = Object.fromEntries(new FormData(document.querySelector('.user-container form')))
-            const entryData = {
-                firstName: data.firstName,
-                lastName: data.lastName,
-                email: data.email,
-                phoneNumber: data.phoneNumber,
-                imageUrl: data.imageUrl,                    
-                createdAt: new Date().toISOString(),
-                updatedAt: new Date().toISOString(),
-                address: {
-                    city: data.city,
-                    country: data.country,
-                    street: data.street,
-                    streetNumber: data.streetNumber,
-                }
+        const entryData = {
+            firstName: data.firstName,
+            lastName: data.lastName,
+            email: data.email,
+            phoneNumber: data.phoneNumber,
+            imageUrl: data.imageUrl,                    
+            createdAt: new Date().toISOString(),
+            updatedAt: new Date().toISOString(),
+            address: {
+                city: data.city,
+                country: data.country,
+                street: data.street,
+                streetNumber: data.streetNumber,
             }
+        }
         // Check if there is user data and make a post or put request 
         if (submit && !userData) {               
             fetch('http://localhost:3030/jsonstore/users', {
@@ -52,7 +51,8 @@ export default function CreateForm({hideUserForm, userData}) {
                 hideUserForm();                
             })
             .catch((error) => console.log(error))
-        } else if (userData) {
+        } else if (submit && userData) {
+
             fetch(`http://localhost:3030/jsonstore/users/${userData._id}`, {
                 method: 'PUT',
                 headers: {
@@ -60,9 +60,9 @@ export default function CreateForm({hideUserForm, userData}) {
                 },
                 body: JSON.stringify({...entryData, _id: userData._id}),
             })
-            // .then(() => {
-            //     hideUserForm();                
-            // })
+            .then(() => {
+                hideUserForm();                
+            })
             .catch((error) => console.log(error))
         }       
 

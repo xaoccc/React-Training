@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-export default function ControlledFormPipe() {
+export default function ControlledFormPipe({formRef}) {
 
     const initialState = {
         username: '',
@@ -46,7 +46,7 @@ export default function ControlledFormPipe() {
 
     return (
         <>
-            <form onSubmit={submitHandler}>
+            <form ref={formRef} onSubmit={submitHandler}>
                 <h1>Controlled Form</h1>
                 <div>
                     <label htmlFor="username">Username</label>

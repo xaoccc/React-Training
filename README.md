@@ -240,6 +240,32 @@ Here `[count]` is a dependency array. This means that the code in useEffect will
         We have an initial state storage, form state, value change handler and reset handler for better working with form data.
 
 
+### UseRef
+
+- We use useRef to use an element from another component for :
+    - Remote submit
+    - Data storage
+    - Accessing DOM Elements
+- Usage :
+    On the remote component:
+    ```
+    const formRef = useRef();
+    
+    return (
+        <>
+        <ControlledFormPipe formRef={formRef}  />
+        <button type="button" onClick={() => formRef.current.submit()}>Submit</button>
+        </>
+    )
+    ```
+    On the main component we call it like a prop and add it to the element lik a ref:
+    ```
+    <form ref={formRef}...
+    ```
+
+
+
+
 
 
 

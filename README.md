@@ -201,6 +201,44 @@ Here `[count]` is a dependency array. This means that the code in useEffect will
             e.preventDefault()
             ...
         }
+    - For 1 or 2 input fields above approach is OK (ControlledForm.jsx)
+    - For more inputs we should use another approach - input data pipe (ControllerForm.Pipe.jsx)
+        1. Create 
+        ```
+        const initialState = {
+            username: 'username',
+            password: 'password',
+            age: 'age'
+        }
+        ```
+        2. Create form state:
+        ```
+        const [formValue, setFormValue] = useState(initialState);
+        ```
+        3. Update the jsx code of the inputs like so:
+        ```
+        <input value={formValue.username}...
+        ...
+        <input value={formValue.password}...
+        ```
+        4. Replace all the input change handlers with just one:
+        ```
+        function valueChangeHandler(e) {
+            setFormValue(state => ({
+                ...state,
+                [e.target.name]: e.target.value
+            }));
+        } 
+        ```
+        5. Update reset handler:
+        ```
+        function resetHandler() {
+            setFormValue(initialState);
+        }
+        ```
+        6. Summary:
+        We have an initial state storage, form state, value change handler and reset handler for better working with form data.
+
 
 
 

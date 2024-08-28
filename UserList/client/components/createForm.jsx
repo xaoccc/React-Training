@@ -14,11 +14,109 @@ export default function CreateForm({hideUserForm, userData}) {
         streetNumber: (userData) ? userData.address.streetNumber : '',
     });
 
-    const [submit, setSubmit] = useState(false);  
+    const [validInput, setValidInput] = useState({
+        firstName: false,
+        lastName: false,
+        email: false,
+        phoneNumber: false,
+        imageUrl: false,
+        city: false,
+        country: false,
+        street: false,
+        streetNumber: false,
+    });
 
-    function submitForm(e) {
-        e.preventDefault();
-        setSubmit(true);
+    const [submit, setSubmit] = useState(false);  
+    const [firstNameError, setFirstNameError] = useState(false); 
+    const [lastNameError, setLastNameError] = useState(false); 
+    const [countryError, setCountryError] = useState(false); 
+    const [cityError, setCityError] = useState(false); 
+    const [streetError, setStreetError] = useState(false); 
+    const [streetNumberError, setStreetNumberError] = useState(false); 
+    const [phoneNumberError, setPhoneNumberError] = useState(false); 
+    const [imageUrlError, setImageUrlError] = useState(false); 
+    const [emailError, setEmailError] = useState(false); 
+
+    function submitForm(e) {  
+        e.preventDefault(); 
+        if (!Object.values(validInput).some(value => value === false)) {     
+            setSubmit(true);
+        }      
+    }
+
+    function validateName(e, state) {
+        const name = e.currentTarget.value;
+        const pattern = /[0-9.*+?^${}()|[\]\\]/g
+        if (name.match(pattern)) {
+            state(true); 
+            setValidInput({...validInput, [e.currentTarget.id]: false});    
+        } else {
+            state(false);
+            setValidInput({...validInput, [e.currentTarget.id]: true});
+        }         
+    }
+
+    function validateImgUrl(e) {
+        const name = e.currentTarget.value;
+        const pattern = /^(http)[s]{0,1}(:\/\/)[\w\d.\/\-._~:?#\[\]@!$&'()*+,;=]+$/g
+        if (!name.match(pattern)) {
+            setImageUrlError(true); 
+            setValidInput({...validInput, [e.currentTarget.id]: false});    
+        } else {
+            setImageUrlError(false);
+            setValidInput({...validInput, [e.currentTarget.id]: true});
+        }         
+    }
+
+    function validateEmail(e) {
+        const name = e.currentTarget.value;
+        const pattern = /^[\w\d.\-_]+@[\w\d.\-_]+$/g
+        if (!name.match(pattern)) {
+            setEmailError(true); 
+            setValidInput({...validInput, [e.currentTarget.id]: false});    
+        } else {
+            setEmailError(false);
+            setValidInput({...validInput, [e.currentTarget.id]: true});
+        }         
+    }
+
+    function validateNumber(e, state) {
+        const number = e.currentTarget.value;
+        if (+number == number) {
+            state(false);
+            setValidInput({...validInput, [e.currentTarget.id]: true});              
+        } else {
+            state(true); 
+            setValidInput({...validInput, [e.currentTarget.id]: false}); 
+        }         
+    }
+
+    function validateFirstName(e) {
+        validateName(e, setFirstNameError)       
+    }
+
+    function validateLastName(e) {
+        validateName(e, setLastNameError)       
+    }
+
+    function validateCountry(e) {
+        validateName(e, setCountryError)       
+    }
+
+    function validateCity(e) {
+        validateName(e, setCityError)       
+    }
+
+    function validateStreet(e) {
+        validateName(e, setStreetError)       
+    }
+
+    function validateStreetNumber(e) {
+        validateNumber(e, setStreetNumberError)
+    }
+
+    function validatePhoneNumber(e) {
+        validateNumber(e, setPhoneNumberError)
     }
 
     useEffect(() => {
@@ -101,15 +199,17 @@ export default function CreateForm({hideUserForm, userData}) {
                                 <label htmlFor="firstName">First name</label>
                                 <div className="input-wrapper">
                                     <span><i className="fa-solid fa-user"></i></span>
-                                    <input id="firstName" name="firstName" type="text" value={input.firstName} onChange={handleInputChange} required />
+                                    <input id="firstName" name="firstName" type="text" value={input.firstName} onBlur={validateFirstName} onChange={handleInputChange} required />                                    
                                 </div>
+                                {(firstNameError) ? <p className="error">First name is not valid</p> : null}
                             </div>
                             <div className="form-group">
                                 <label htmlFor="lastName">Last name</label>
                                 <div className="input-wrapper">
                                     <span><i className="fa-solid fa-user"></i></span>
-                                    <input id="lastName" name="lastName" type="text" value={input.lastName} onChange={handleInputChange} required />
+                                    <input id="lastName" name="lastName" type="text" value={input.lastName} onBlur={validateLastName} onChange={handleInputChange} required />
                                 </div>
+                                {(lastNameError) ? <p className="error">Last name is not valid</p> : null}
                             </div>
                         </div>
 
@@ -118,15 +218,17 @@ export default function CreateForm({hideUserForm, userData}) {
                                 <label htmlFor="email">Email</label>
                                 <div className="input-wrapper">
                                     <span><i className="fa-solid fa-envelope"></i></span>
-                                    <input id="email" name="email" type="text" value={input.email} onChange={handleInputChange} required />
+                                    <input id="email" name="email" type="text" placeholder="john@gmail.com" value={input.email} onBlur={validateEmail} onChange={handleInputChange} required />
                                 </div>
+                                {(emailError) ? <p className="error">Email is not valid</p> : null}
                             </div>
                             <div className="form-group">
                                 <label htmlFor="phoneNumber">Phone number</label>
                                 <div className="input-wrapper">
                                     <span><i className="fa-solid fa-phone"></i></span>
-                                    <input id="phoneNumber" name="phoneNumber" type="text" value={input.phoneNumber} onChange={handleInputChange} required />
+                                    <input id="phoneNumber" name="phoneNumber" type="text" value={input.phoneNumber} onBlur={validatePhoneNumber} onChange={handleInputChange} required />
                                 </div>
+                                {(phoneNumberError) ? <p className="error">Phone number must contain only digits!</p> : null}
                             </div>
                         </div>
 
@@ -134,8 +236,9 @@ export default function CreateForm({hideUserForm, userData}) {
                             <label htmlFor="imageUrl">Image Url</label>
                             <div className="input-wrapper">
                                 <span><i className="fa-solid fa-image"></i></span>
-                                <input id="imageUrl" name="imageUrl" type="text" value={input.imageUrl} onChange={handleInputChange} required />
+                                <input id="imageUrl" name="imageUrl" type="text" value={input.imageUrl} onBlur={validateImgUrl} onChange={handleInputChange} required />
                             </div>
+                            {(imageUrlError) ? <p className="error">The URL must start with 'http'</p> : null}
                         </div>
 
                         <div className="form-row">
@@ -143,15 +246,17 @@ export default function CreateForm({hideUserForm, userData}) {
                                 <label htmlFor="country">Country</label>
                                 <div className="input-wrapper">
                                     <span><i className="fa-solid fa-map"></i></span>
-                                    <input id="country" name="country" type="text" value={input.country} onChange={handleInputChange} required />
+                                    <input id="country" name="country" type="text" value={input.country} onBlur={validateCountry} onChange={handleInputChange} required />
                                 </div>
+                                {(countryError) ? <p className="error">Country name is not valid</p> : null}
                             </div>
                             <div className="form-group">
                                 <label htmlFor="city">City</label>
                                 <div className="input-wrapper">
                                     <span><i className="fa-solid fa-city"></i></span>
-                                    <input id="city" name="city" type="text" value={input.city} onChange={handleInputChange} required />
+                                    <input id="city" name="city" type="text" value={input.city} onBlur={validateCity} onChange={handleInputChange} required />
                                 </div>
+                                {(cityError) ? <p className="error">City name is not valid</p> : null}
                             </div>
                         </div>
 
@@ -160,15 +265,17 @@ export default function CreateForm({hideUserForm, userData}) {
                                 <label htmlFor="street">Street</label>
                                 <div className="input-wrapper">
                                     <span><i className="fa-solid fa-map"></i></span>
-                                    <input id="street" name="street" type="text" value={input.street} onChange={handleInputChange} required />
+                                    <input id="street" name="street" type="text" value={input.street} onBlur={validateStreet} onChange={handleInputChange} required />
                                 </div>
+                                {(streetError) ? <p className="error">Street name is not valid</p> : null}
                             </div>
                             <div className="form-group">
                                 <label htmlFor="streetNumber">Street number</label>
                                 <div className="input-wrapper">
                                     <span><i className="fa-solid fa-house-chimney"></i></span>
-                                    <input id="streetNumber" name="streetNumber" type="text" value={input.streetNumber} onChange={handleInputChange} required />
+                                    <input id="streetNumber" name="streetNumber" type="text" value={input.streetNumber} onBlur={validateStreetNumber} onChange={handleInputChange} required />
                                 </div>
+                                {(streetNumberError) ? <p className="error">Street number is not valid</p> : null}
                             </div>
                         </div>
                         <div id="form-actions">

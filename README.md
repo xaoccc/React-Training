@@ -155,6 +155,7 @@ Here `[count]` is a dependency array. This means that the code in useEffect will
     ```
 
 ## Demo 7: Forms
+
 ### Uncontrolled Forms
 - Their input values are in the DOM
 - We have no power over the state
@@ -262,6 +263,29 @@ Here `[count]` is a dependency array. This means that the code in useEffect will
     ```
     <form ref={formRef}...
     ```
+
+## Demo 8: Routes
+- Routes in SPA are used for:
+    - URL-Based Navigation
+    - Component Mapping
+    - Handling Dynamic Content
+    - Maintaining Browser History
+    - Better User Experience
+- Install react-router-dom: `npm install react-router-dom`
+- In main.jsx in the crs dir import React Browser Router:
+```
+...
+import { BrowserRouter } from 'react-router-dom'
+
+ReactDOM.createRoot(document.getElementById('root')).render(
+  <BrowserRouter>
+    <Header />
+    <Main />
+    <Footer />
+  </BrowserRouter>
+)
+```
+- In main.jsx in the components:
 
 
 

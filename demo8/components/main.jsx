@@ -2,7 +2,8 @@ export default function Main() {
     return (
         <main>
             <section>
-                <div>Main Content</div>
+                <h1>React Router</h1>
+                <div>Demo 8</div>
             </section>
         </main>
     )

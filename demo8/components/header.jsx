@@ -1,4 +1,4 @@
-
+import { Link } from "react-router-dom"
 
 export default function Header() {
     return (
@@ -6,10 +6,11 @@ export default function Header() {
             <nav>
                 <div className="logo">Logo</div>
                 <ul>
-                    <li><a href="/about">About</a></li>
-                    <li><a href="/customers">Customers</a></li>
-                    <li><a href="/news">News</a></li>
-                    <li><a href="/contact">Contacts</a></li>
+                    <li><Link to="/">Home</Link></li>
+                    <li><Link to="/about">About</Link></li>
+                    <li><Link to="/customers">Customers</Link></li>
+                    <li><Link to="/news">News</Link></li>
+                    <li><Link to="/contact">Contacts</Link></li>
                 </ul>                
             </nav>
         </header>

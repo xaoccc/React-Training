@@ -285,7 +285,55 @@ ReactDOM.createRoot(document.getElementById('root')).render(
   </BrowserRouter>
 )
 ```
-- In main.jsx in the components:
+- In main.jsx in the components dir add all the routes:
+```
+import { Route, Routes } from "react-router-dom"
+import Home from "../components/Home"
+import About from "../components/About"
+import Customers from "../components/Customers"
+import News from "../components/News"
+import Contacts from "../components/Contacts"
+
+export default function Main() {
+    return (
+        <main>
+
+            <Routes>
+                <Route path="/" element={<Home />} />
+                <Route path="/about" element={<About />} />
+                <Route path="/customers" element={<Customers />} />
+                <Route path="/news" element={<News />} />
+                <Route path="/contact" element={<Contacts />} />
+            </Routes>
+
+        </main>
+    )
+}
+```
+- Still, the app in not SPA. Here is how to solve it:
+- Go to header.jsx
+- Import Link:
+```
+import { Link } from "react-router-dom"
+
+export default function Header() {
+    return (
+        <header>
+            <nav>
+                <div className="logo">Logo</div>
+                <ul>
+                    <li><Link to="/">Home</Link></li>
+                    <li><Link to="/about">About</Link></li>
+                    <li><Link to="/customers">Customers</Link></li>
+                    <li><Link to="/news">News</Link></li>
+                    <li><Link to="/contact">Contacts</Link></li>
+                </ul>                
+            </nav>
+        </header>
+    )
+}
+```
+
 
 
 

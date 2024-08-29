@@ -333,15 +333,26 @@ export default function Header() {
     )
 }
 ```
+- Use React Bootstrap for some easy CSS: `npm install react-bootstrap`
+- Create CharacteListItem.jsx for the display of each character
+- Create CharacterList.jsx for getting data from API and display it there using the usual steps:
+    - Create state to store all characters data
+    - Make a GET request to the API and get the data and store it into the state
+    - Usung map, display the data for each character, using CharacteListItem and pass a parameter id, we need it for next routing
+- Create CharacterDetails to display the details for each character, using GET request to the API
+- We take the id parameter fom the url, adding one more route to main.jsx:
+```
+<Route path={`/characters/:id`} element={<CharacterDetails />} />
+```
+- That way the Button (as Link) in CharacterListItem will direct us to the correct contents:
+```
+<Button as={Link} to={`/characters/${id}`} variant="primary">Details</Button>
+```
+- So, we have the id in these places:
+    1. In CharacterListItem as parameter
+    2. Then the id goes to the Button (as Link) 
+    3. Then the id goes in the url
+    4. Then CharactersDetails gets the id from the url and uses is to make a GET request to the API
 
 
-
-
-
-
-
-
-
-
- 
 

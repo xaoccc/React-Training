@@ -17,7 +17,7 @@ export default function Header() {
           <nav className="navbar navbar-expand-lg custom_nav-container ">
             <a className="navbar-brand" href="index.html">
               <span>
-                Finexo
+                Crypto Mania
               </span>
             </a>
 

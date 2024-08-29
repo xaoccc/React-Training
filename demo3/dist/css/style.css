@@ -915,6 +915,13 @@ a:focus {
   background-color: #007fa4;
 }
 
+iframe {
+  display: block;
+  margin: 0 auto;
+  width:70%;
+  height:600px;
+}
+
 /* footer section*/
 .footer_section {
   position: relative;

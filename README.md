@@ -340,6 +340,10 @@ export default function Header() {
     - Make a GET request to the API and get the data and store it into the state
     - Usung map, display the data for each character, using CharacteListItem and pass a parameter id, we need it for next routing
 - Create CharacterDetails to display the details for each character, using GET request to the API
+- Import these in CharacterDetails.jsx:
+```
+import { useParams, useLocation, useNavigate } from 'react-router-dom';
+```
 - We take the id parameter fom the url, adding one more route to main.jsx:
 ```
 <Route path={`/characters/:id`} element={<CharacterDetails />} />

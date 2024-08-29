@@ -6,6 +6,8 @@ import News from "../components/News"
 import Contacts from "../components/Contacts"
 import CharacterList from "./CharacterList"
 import CharacterDetails from "./CharacterDetails"
+import NotFound from "./NotFound"
+
 
 export default function Main() {
     return (
@@ -19,6 +21,7 @@ export default function Main() {
                 <Route path="/contact" element={<Contacts />} />
                 <Route path="/characters" element={<CharacterList />} />
                 <Route path={`/characters/:id`} element={<CharacterDetails />} />
+                <Route path={"*"} element={<NotFound />} />
             </Routes>
 
         </main>

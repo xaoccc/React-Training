@@ -359,6 +359,8 @@ import { useParams, useLocation, useNavigate } from 'react-router-dom';
     4. Then CharactersDetails gets the id from the url and uses is to make a GET request to the API
 
 ## Demo 9: Hooks
+- This demo is using React Bootstrap, so install them: `npm install react-bootstrap bootstrap`
+- 
 
 
 

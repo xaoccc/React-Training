@@ -1,14 +1,19 @@
 import ListGroup from 'react-bootstrap/ListGroup';
 import { useState, useEffect } from 'react';
+import ToDoItem from './todoItem';
 
 export default function Main() {
 
-    const [data, setData] = useState([]);
+    const [todos, setTodos] = useState([]);
+    const baseUrl = 'http://127.0.0.1:3030/jsonstore/todos';
 
     useEffect(() => {
-        fetch('http://127.0.0.1:3030/jsonstore/todos')
+        fetch(baseUrl)
             .then(response => response.json())
-            .then(data => console.log(data))
+            .then(data => {
+                setTodos(Object.values(data));
+                console.log(data);
+            })
             .catch(error => console.error(error));
         }, []);
     
@@ -17,15 +22,7 @@ export default function Main() {
         
         <ListGroup className='w-25 mx-auto'>
             <h1>ToDo List</h1>
-            <ListGroup.Item action>
-                Link 1
-            </ListGroup.Item>
-            <ListGroup.Item action>
-                Link 2
-            </ListGroup.Item>
-            <ListGroup.Item action>
-                This one is a button
-            </ListGroup.Item>
+            { todos.map((todo) =>  <ToDoItem key={todo._id} todo={todo} /> )}
         </ListGroup>
         
     );

@@ -360,7 +360,29 @@ import { useParams, useLocation, useNavigate } from 'react-router-dom';
 
 ## Demo 9: Hooks
 - This demo is using React Bootstrap, so install them: `npm install react-bootstrap bootstrap`
-- 
+- Create Form inside a Modal
+- In the form input add onChang Handler, name and value:
+```
+<Form.Control type="text" name="text"  value={formValues.name} onChange={onChangeHandler} placeholder="Enter ToDo" />
+```
+- Create dir hooks in the main dir of the demo
+- In hooks dir create the custom hooks useForm.js :
+```
+export function useForm(initialValues) {
+    const [formValues, setFormValues] = useState(initialValues)
+
+    function onChangeHandler(e) {
+        setFormValues(state => ({...state, [e.target.name]: e.target.value }))
+    };
+
+    return {formValues, onChangeHandler}
+}
+```
+- In addToDo.jsx call the hook useForm:
+```
+const {formValues, onChangeHandler} = useForm ({text: ''})
+```
+
 
 
 

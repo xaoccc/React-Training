@@ -43,3 +43,12 @@ footer {
     background-color: rgb(197, 226, 235);
 }
 
+form .btn-primary {
+    margin-left: 1rem;
+}
+
+#root > .btn-primary {
+    width: 15%;
+    margin: 2rem auto;
+}
+

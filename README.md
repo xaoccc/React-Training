@@ -382,6 +382,70 @@ export function useForm(initialValues) {
 ```
 const {formValues, onChangeHandler} = useForm ({text: ''})
 ```
+### Context
+- Context is a powerful tool in React for functionality access across the React tree
+- Create a button in todoItem.jsx:
+```
+<Button variant="dark" onClick={() => DeleteToDo(todo._id)}>X</Button> 
+```
+- We'll create function DeleteToDo() accessible across the app, using Context:
+    - In the main dir create dir `contexts`
+    - In context dir create file `TodoContext.js`
+    - In contextToDo.js import React Context and create the context (a function TodoContext, which can be used across our app):
+    ```
+    import { createContext } from "react";
+
+    export const TodoContext = createContext();
+    ```
+    - Set where should the context be used. 
+    - We'll use it in main.jsx. Import the context:
+    ```
+    import { TodoContext } from '../contexts/todoContext';
+    ```
+    - Wrap the context provider around the component :
+    ```
+    <TodoContext.Provider>
+    ...component code here...
+    </TodoContext.Provider>
+    ```
+    - Import useContext whereever we need this context. In our case we need it in todoItem.jsx:
+    ```
+    import { useContext } from 'react';
+    ```
+    - Import also the context itself. In todoItem.jsx:
+    ```
+    import { TodoContext } from '../contexts/todoContext';
+    ```
+    - Now in our component ToDoItem we have access to the context :
+    ```
+    const todoContextValue = useContext(TodoContext);
+    ```
+    or in our case:
+    ```
+    const { DeleteToDo } = useContext(TodoContext);
+    ```
+    - In main.jsx:
+    ```
+        function DeleteToDo(todoId) {
+            fetch(`${baseUrl}/${todoId}`, { method: 'DELETE'})
+            .then(() => setTodos(state => state.filter((x) => x._id !== todoId)))
+            .catch((error) => console.log(error));
+    }
+
+    const contextValue = {
+        DeleteToDo
+    };
+    ...
+    export default function ToDoItem({todo}) {
+        const { DeleteToDo } = useContext(TodoContext);
+    ...
+    ```
+    Here we use the context to pass the DeleteToDo function from the main.jsx to todoItem.jsx not through the props, but through the context. This way we can skip several levels of prop drilling. 
+
+
+React Context:
+- prevents props drilling
+- is not a hook and should not be used as a hook
 
 
 

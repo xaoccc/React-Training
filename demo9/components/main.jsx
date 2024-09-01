@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react';
 import ToDoItem from './todoItem';
 import Button from 'react-bootstrap/Button';
 import ToDo from './addToDo';
+import { TodoContext } from '../contexts/todoContext';
 
 export default function Main() {
 
@@ -28,6 +29,16 @@ export default function Main() {
         setAdd(false);
     }
 
+    function DeleteToDo(todoId) {
+        fetch(`${baseUrl}/${todoId}`, { method: 'DELETE'})
+        .then(() => setTodos(state => state.filter((x) => x._id !== todoId)))
+        .catch((error) => console.log(error));
+    }
+
+    const contextValue = {
+        DeleteToDo
+    };
+
     const onTodoAdd = async (values) => {
         console.log(values)
         fetch(baseUrl, {
@@ -37,18 +48,13 @@ export default function Main() {
         })
         .then((res) => res.json())
         .then((data) => {
-            console.log(data);
             setTodos(state => [...state, data])
-
-
-            })
+         })
         .catch((error) => console.log(error))
     }
-
-
-
+    
     return (
-        <>
+        <TodoContext.Provider value={contextValue}>
         
             <ListGroup className='w-25 mx-auto'>
                 <h1>ToDo List</h1>
@@ -59,7 +65,7 @@ export default function Main() {
             
 
             <Button onClick={showModal} variant="primary" >Create ToDo</Button>{' '}
-        </>
+        </TodoContext.Provider>
 
         
         

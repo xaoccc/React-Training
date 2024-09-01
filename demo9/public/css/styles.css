@@ -52,3 +52,14 @@ form .btn-primary {
     margin: 2rem auto;
 }
 
+.todo {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.todo button {
+    height: 50%;
+}
+

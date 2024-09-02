@@ -447,6 +447,36 @@ React Context:
 - prevents props drilling
 - is not a hook and should not be used as a hook
 
+## Games Play - Auhentication and Authorization
+- Create a custom hook to handle login form. In hooks dir create useForm hook:
+```
+import { useState } from "react"
+
+export default function useForm(submitHandler, initialValues) {
+    const [values, setValues] = useState(initialValues);
+    function onChange(e) {
+        setValues(state => ({
+            ...state,
+            [e.target.name]: e.target.value
+        }))
+    }
+
+    function onSubmit(e) {
+        e.preventDefault();
+        submitHandler(values);
+    }
+
+    return { values, onChange, onSubmit }
+}
+```
+- In App.js monitor the state for the auth. This auth state will be monitored across the app and a submit handler :
+```
+const [auth, setAuth] = useState({});
+function loginSubmitHandler(values) {
+        ...
+    }
+```
+
 
 
 

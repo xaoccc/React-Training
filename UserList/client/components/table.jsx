@@ -11,14 +11,12 @@ export default function Table({input, criteria, startSearch}) {
     const [showUserInfo, setShowUserInfo] = useState(false);
     const [getUserInfo, setGetUserInfo] = useState({});
 
-
     useEffect(() => {
         if (startSearch) {  
             fetch('http://localhost:3030/jsonstore/users')
             .then((res) => res.json())
             .then((result) => {
                 setData(Object.values(result));
-                console.log(Object.values(result));
                 if (startSearch) {                   
                     setData(Object.values(result).filter(userData => userData[criteria] === input));
                 }
@@ -65,14 +63,8 @@ export default function Table({input, criteria, startSearch}) {
         setShowUserInfo(false);
     }
 
-
     return (
-
-
         <div className="table-wrapper" >
-            {/* <div className="loading-shade">s
-                    <div className="spinner"></div>
-                </div> */}
             <table className="table">
                 <thead>
                     <tr>

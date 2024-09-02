@@ -37,7 +37,7 @@ export default function Table({input, criteria, startSearch}) {
                 setData(Object.values(result));               
             })
             .catch((error) => console.log(error))
-    }, [])
+    }, [data])
 
 
     function createUserClickHandler() {

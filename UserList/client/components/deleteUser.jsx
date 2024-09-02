@@ -13,7 +13,6 @@ export default function DeleteUser({hideDeleteForm, idToDelete}) {
                 })
                 .then(() => {
                     setDeleteUser(false);                
-                    document.getElementById(idToDelete).remove();
                 })
                 .catch((error) => console.log(error))
             }

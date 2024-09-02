@@ -41,7 +41,9 @@ export default function CreateForm({hideUserForm, userData}) {
         e.preventDefault(); 
         if (!Object.values(validInput).some(value => value === false)) {     
             setSubmit(true);
-        }      
+        }  else if (userData) {
+            setSubmit(true);
+        }    
     }
 
     function validateName(e, state) {

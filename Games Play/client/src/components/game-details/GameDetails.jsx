@@ -1,13 +1,15 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 
 import * as gameService from '../../services/gameService';
 import * as commentService from '../../services/commentService';
+import { path } from '../../paths';
 
 export default function GameDetails() {
     const [game, setGame] = useState({});
     const [comments, setComments] = useState([]);
     const { gameId } = useParams();
+    const navigate = useNavigate();
 
     useEffect(() => {
         gameService.getOne(gameId)
@@ -31,6 +33,12 @@ export default function GameDetails() {
         setComments(state => [...state, newComment]);
     }
 
+    const deleteGameHandler = async () => {
+        await gameService.deleteGame(gameId);
+        navigate(path.home);
+    }
+
+    
     return (
         <section id="game-details">
             <h1>Game Details</h1>
@@ -59,11 +67,11 @@ export default function GameDetails() {
                     )}
                 </div>
 
-                {/* <!-- Edit/Delete buttons ( Only for creator of this game )  -->
+
                 <div className="buttons">
                     <a href="#" className="button">Edit</a>
-                    <a href="#" className="button">Delete</a>
-                </div> */}
+                    <a href="#" className="button" onClick={deleteGameHandler} >Delete</a>
+                </div>
             </div>
 
             <article className="create-comment">

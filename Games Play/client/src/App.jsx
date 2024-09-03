@@ -1,7 +1,9 @@
 import { Routes, Route } from 'react-router-dom';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { SubmitHandlerContext } from './contexts/submitHandlerContext';
-import * as authService from '../src/services/authService'
+import { GamesViewContext } from './contexts/gamesViewContxt';
+import * as authService from '../src/services/authService';
+import * as gameService from '../src/services/gameService';
 import { path } from './paths';
 
 import Header from "./components/header/Header"
@@ -21,6 +23,14 @@ function App() {
         localStorage.removeItem('accessToken');
         return {};
     });
+
+    const [games, setGames] = useState([]);
+
+    useEffect(() => {
+        gameService.getAll()
+            .then(result => setGames(result));
+    }, []);
+
 
     async function loginSubmitHandler(values) {
         const result = await authService.login(values);
@@ -55,6 +65,7 @@ function App() {
 
     return (
         <SubmitHandlerContext.Provider value={values}>
+            <GamesViewContext.Provider value={games}>
             <div id="box">
                 <Header />
 
@@ -68,6 +79,7 @@ function App() {
                     <Route path={path.logout} element={<Logout /> } />
                 </Routes>
             </div>
+            </GamesViewContext.Provider>
         </SubmitHandlerContext.Provider>
     )
 }

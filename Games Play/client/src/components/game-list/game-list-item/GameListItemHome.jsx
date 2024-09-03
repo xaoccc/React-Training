@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 export default function GameListItem({
     _id,
     title,
@@ -15,7 +17,7 @@ export default function GameListItem({
                 <span>☆</span><span>☆</span><span>☆</span><span>☆</span><span>☆</span>
             </div>
             <div className="data-buttons">
-                <a href={`/games/${_id}`} className="btn details-btn">Details</a>
+                <Link to={`/games/${_id}`} className="btn details-btn">Details</Link>
             </div>
         </div>
 

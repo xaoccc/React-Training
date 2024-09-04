@@ -15,15 +15,11 @@ import Register from './components/register/Register';
 import GameDetails from './components/game-details/GameDetails';
 import Logout from './components/logout/logout';
 import { useNavigate } from 'react-router-dom';
+import UsePersistantState from './hooks/usePersistantState';
 
 function App() {
     const navigate = useNavigate();
-    const [auth, setAuth] = useState(() => {
-        // Clear the access token from the localStorage on logout
-        localStorage.removeItem('accessToken');
-        return {};
-    });
-
+    const [auth, setAuth] = UsePersistantState({});
     const [games, setGames] = useState([]);
 
     useEffect(() => {

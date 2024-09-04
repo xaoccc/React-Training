@@ -4,12 +4,16 @@ import { useParams, useNavigate } from "react-router-dom";
 import * as gameService from '../../services/gameService';
 import * as commentService from '../../services/commentService';
 import { path } from '../../paths';
+import { useContext } from "react";
+import { SubmitHandlerContext } from "../../contexts/submitHandlerContext";
 
 export default function GameDetails() {
     const [game, setGame] = useState({});
     const [comments, setComments] = useState([]);
     const { gameId } = useParams();
     const navigate = useNavigate();
+
+    const userData = useContext(SubmitHandlerContext);
 
     useEffect(() => {
         gameService.getOne(gameId)
@@ -23,10 +27,9 @@ export default function GameDetails() {
         e.preventDefault();
 
         const formData = new FormData(e.currentTarget);
-
         const newComment = await commentService.create(
             gameId,
-            formData.get('username'),
+            userData.username,
             formData.get('comment')
         );
 
@@ -77,7 +80,6 @@ export default function GameDetails() {
             <article className="create-comment">
                 <label>Add new comment:</label>
                 <form className="form" onSubmit={addCommentHandler}>
-                    <input type="text" name="username" placeholder="username" />
                     <textarea name="comment" placeholder="Comment......"></textarea>
                     <input className="btn submit" type="submit" value="Add Comment" />
                 </form>

@@ -15,11 +15,11 @@ import Register from './components/register/Register';
 import GameDetails from './components/game-details/GameDetails';
 import Logout from './components/logout/logout';
 import { useNavigate } from 'react-router-dom';
-import UsePersistedState from './hooks/usePersistedState';
+import usePersistedState from './hooks/usePersistedState';
 
 function App() {
     const navigate = useNavigate();
-    const [auth, setAuth] = UsePersistedState('auth', {});
+    const [auth, setAuth] = usePersistedState('auth', {});
     const [games, setGames] = useState([]);
 
     useEffect(() => {

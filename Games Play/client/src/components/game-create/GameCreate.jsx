@@ -1,17 +1,23 @@
-import { useNavigate } from 'react-router-dom';
+import { useNavigate} from 'react-router-dom';
+import { useContext, useState } from 'react';
+import { GamesViewContext } from '../../contexts/gamesViewContxt';
 
 import * as gameService from '../../services/gameService';
 
 export default function GameCreate() {
     const navigate = useNavigate();
+
+    const gamesContext = useContext(GamesViewContext);
+    const [games, setGames] = useState(gamesContext);
     
     const createGameSubmitHandler = async (e) => {
-        e.preventDefault();
+        e.preventDefault(); 
 
         const gameData = Object.fromEntries(new FormData(e.currentTarget));
 
         try {
             await gameService.create(gameData);
+            setGames([...games, gameData]);
 
             navigate('/games');
         } catch (err) {

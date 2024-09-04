@@ -1,11 +1,11 @@
 import { useContext } from "react";
 import { GamesViewContext } from "../../contexts/gamesViewContxt";
 import GameListItemHome from "../game-list/game-list-item/GameListItemHome";
+import withAuth from "../../HOC/withAuth";
 
-export default function Home() {
+function Home() {
 
-    const games = useContext(GamesViewContext);
-    console.log(games);
+    const games = useContext(GamesViewContext);    
 
     return (
         
@@ -32,3 +32,6 @@ export default function Home() {
         </section>
     );
 }
+
+// Using the HOC:
+export default withAuth(Home);

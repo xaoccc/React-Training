@@ -55,6 +55,7 @@ function App() {
         logoutHandler,
         username: auth.username,
         email: auth.email,
+        id: auth._id,
         // !!auth.username is the same as (auth.username) ? true : false
         isAuthenticated: !!auth.email
     }

@@ -37,6 +37,9 @@ export default function GameDetails() {
     }
 
     const deleteGameHandler = async () => {
+        console.log(game._ownerId);
+        console.log(userData.id);
+
         await gameService.deleteGame(gameId);
         navigate(path.home);
     }
@@ -70,11 +73,12 @@ export default function GameDetails() {
                     )}
                 </div>
 
-
+                {(game._ownerId === userData.id) &&    
                 <div className="buttons">
                     <a href="#" className="button">Edit</a>
                     <a href="#" className="button" onClick={deleteGameHandler} >Delete</a>
                 </div>
+                }
             </div>
 
             <article className="create-comment">

@@ -8,6 +8,7 @@ import Header from "./components/header/Header"
 import Home from "./components/home/Home"
 import GameList from './components/game-list/GameList';
 import GameCreate from './components/game-create/GameCreate';
+import GameEdit from './components/game-edit/GameEdit';
 import Login from './components/login/Login';
 import Register from './components/register/Register';
 import GameDetails from './components/game-details/GameDetails';
@@ -61,6 +62,7 @@ function App() {
                     <Route path={path.home} element={<Home />} />
                     <Route path={path.games} element={<GameList />} />
                     <Route path={path.create} element={<GameCreate />} />
+                    <Route path={path.edit} element={<GameEdit />} />
                     <Route path={path.login} element={<Login />} />
                     <Route path={path.register} element={<Register />} />
                     <Route path={path.details} element={<GameDetails />} />

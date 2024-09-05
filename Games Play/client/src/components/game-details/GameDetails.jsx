@@ -1,5 +1,5 @@
-import { useEffect, useState } from "react";
-import { useParams, useNavigate } from "react-router-dom";
+import { useEffect, useMemo, useState } from "react";
+import { useParams, useNavigate, Link } from "react-router-dom";
 import  useForm  from "../../hooks/useForm";
 
 import * as gameService from '../../services/gameService';
@@ -39,9 +39,10 @@ export default function GameDetails() {
         navigate(path.home);
     }
 
-    const { values, onChange, onSubmit } = useForm(addCommentHandler, { comment: '' });
+    const initialValues = useMemo(() => ({ comment: '' }), []);
 
-    
+    const { values, onChange, onSubmit } = useForm(addCommentHandler, initialValues);
+
     return (
         <section id="game-details">
             <h1>Game Details</h1>
@@ -72,7 +73,7 @@ export default function GameDetails() {
 
                 {(game._ownerId === userData.id) &&    
                 <div className="buttons">
-                    <a href="#" className="button">Edit</a>
+                    <Link to={`/games/${gameId}/edit`} className="button">Edit</Link>
                     <a href="#" className="button" onClick={deleteGameHandler} >Delete</a>
                 </div>
                 }

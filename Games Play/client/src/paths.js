@@ -6,5 +6,6 @@ export const path = {
     register: "/register",
     logout: "/logout",
     details: "/games/:gameId",
+    edit: "/games/:gameId/edit",
 
 }

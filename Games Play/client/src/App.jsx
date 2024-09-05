@@ -1,9 +1,6 @@
 import { Routes, Route } from 'react-router-dom';
-import { useState, useEffect } from 'react';
 import { SubmitHandlerContext } from './contexts/submitHandlerContext';
-import { GamesViewContext } from './contexts/gamesViewContxt';
 import * as authService from '../src/services/authService';
-import * as gameService from '../src/services/gameService';
 import { path } from './paths';
 
 import Header from "./components/header/Header"
@@ -20,13 +17,6 @@ import usePersistedState from './hooks/usePersistedState';
 function App() {
     const navigate = useNavigate();
     const [auth, setAuth] = usePersistedState('auth', {});
-    const [games, setGames] = useState([]);
-
-    useEffect(() => {
-        gameService.getAll()
-            .then(result => setGames(result));
-    }, []);
-
 
     async function loginSubmitHandler(values) {
         const result = await authService.login(values);
@@ -39,15 +29,16 @@ function App() {
         const result = await authService.register(values);
         if (result) {
             setAuth(result);
-            navigate(path.games);            
-        }        
+            navigate(path.games);
+        }
     }
 
     function logoutHandler() {
         setAuth({});
-        navigate(path.home); 
+        navigate(path.home);
         localStorage.removeItem('accessToken');
-    } 
+        localStorage.removeItem('auth');
+    }
 
     const values = {
         loginSubmitHandler,
@@ -62,21 +53,18 @@ function App() {
 
     return (
         <SubmitHandlerContext.Provider value={values}>
-            <GamesViewContext.Provider value={games}>
             <div id="box">
                 <Header />
-
                 <Routes>
                     <Route path={path.home} element={<Home />} />
                     <Route path={path.games} element={<GameList />} />
                     <Route path={path.create} element={<GameCreate />} />
                     <Route path={path.login} element={<Login />} />
                     <Route path={path.register} element={<Register />} />
-                    <Route path={path.details} element={<GameDetails /> } />
-                    <Route path={path.logout} element={<Logout /> } />
+                    <Route path={path.details} element={<GameDetails />} />
+                    <Route path={path.logout} element={<Logout />} />
                 </Routes>
             </div>
-            </GamesViewContext.Provider>
         </SubmitHandlerContext.Provider>
     )
 }

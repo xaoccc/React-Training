@@ -1,6 +1,7 @@
 import { useNavigate} from 'react-router-dom';
 import { useContext, useState } from 'react';
 import { GamesViewContext } from '../../contexts/gamesViewContxt';
+import { path } from '../../paths';
 
 import * as gameService from '../../services/gameService';
 
@@ -18,14 +19,12 @@ export default function GameCreate() {
         try {
             await gameService.create(gameData);
             setGames([...games, gameData]);
-
-            navigate('/games');
+            navigate(path.games);
         } catch (err) {
-            // Error notification
             console.log(err);
         }
     }
-
+    
     return (
         <section id="create-page" className="auth">
             <form id="create" onSubmit={createGameSubmitHandler}>

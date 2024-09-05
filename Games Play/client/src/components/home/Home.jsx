@@ -1,11 +1,16 @@
-import { useContext } from "react";
-import { GamesViewContext } from "../../contexts/gamesViewContxt";
+import { useState, useEffect } from "react";
 import GameListItemHome from "../game-list/game-list-item/GameListItemHome";
+import * as gameService from '../../services/gameService';
 import withAuth from "../../HOC/withAuth";
 
 function Home() {
 
-    const games = useContext(GamesViewContext);    
+    const [games, setGames] = useState([]);
+
+    useEffect(() => {
+        gameService.getAll()
+            .then(result => setGames(result));
+    }, []); 
 
     return (
         

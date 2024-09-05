@@ -3,6 +3,7 @@ import { SubmitHandlerContext } from './contexts/submitHandlerContext';
 import * as authService from '../src/services/authService';
 import { path } from './paths';
 
+
 import Header from "./components/header/Header"
 import Home from "./components/home/Home"
 import GameList from './components/game-list/GameList';
@@ -53,6 +54,7 @@ function App() {
 
     return (
         <SubmitHandlerContext.Provider value={values}>
+
             <div id="box">
                 <Header />
                 <Routes>
@@ -65,6 +67,7 @@ function App() {
                     <Route path={path.logout} element={<Logout />} />
                 </Routes>
             </div>
+
         </SubmitHandlerContext.Provider>
     )
 }
